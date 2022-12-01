@@ -1,4 +1,4 @@
-# Welcome to My blog
+# Matt's thoughts on things
 
 ## Commands
 
