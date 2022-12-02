@@ -1,4 +1,15 @@
-site_name: My Docs
+site_name: Matt's thoughts on things
 
 theme:
   name: material
+
+plugins:
+  - search # necessary for search to work
+  - git-revision-date-localized
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences

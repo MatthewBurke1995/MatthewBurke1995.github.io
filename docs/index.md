@@ -1,11 +1,8 @@
 # Matt's thoughts on things
 
-## Commands
+## Who
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Hi, I'm Matt. I'm currently working in Korea for a fintech startup. I enjoy reading and writing about applied maths, computer science and korean culture.
 
 ## Project layout
 
