@@ -1,0 +1,2 @@
+publish:
+	mkdocs gh-deploy	
