@@ -55,12 +55,11 @@ python -m cProfile -s cumulative script.py | grep script.py
 
 Once you've worked out which function is using up the most CPU resources you can dive in deeper and investigate which line is using the most CPU resources with line_profiler. To run this you'll need to download the pip package line_profiler, add the @profile decorator to the functions you want to profile and finally run the line_profiler from the command line 
 
-``` py title="function_to_profile.py
+``` py title="function_to_profile.py"
 @profile
 def slow_add(a: int, b: int) -> int:
     time.sleep(1)
     return a+b
-
 ```
 
 ``` bash

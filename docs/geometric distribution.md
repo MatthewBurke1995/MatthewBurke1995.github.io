@@ -1,19 +1,21 @@
+# Geometric Distribution
+
 !!! quote "interview question"
 
     If a job candidate has a 1% chance of passing an interview, what is the chance that he receives a job offer after 100 interviews?
 
 The first iteration I saw of this question required solving the problem without a calculator. The exact solution is easy with a bit of probability theory. The approximation requires a bit of intuition, and a much longer explanation.
 
-The probability that they succeed on the Nth interview is the probability of succeeding during an inteview after failing (n-1) interviews i.e.
+The probability that they succeed on the Nth interview is the probability of succeeding during an inteview after failing (n-1) interviews i.e.the pmf is
 
 $$
-PMF = p*(1-p)^{n-1}
+f(n) = p*(1-p)^{n-1}
 $$
 
-And the chance that they would have succeeded on at least 1 of the N interviews is the inverse of them failing every interview i.e.
+And the chance that they would have succeeded on at least 1 of the N interviews is the inverse of them failing every interview i.e. the cdf is
 
 $$
-CDF = 1 - (1-p)^n
+f(N \le n) = 1 - (1-p)^n
 $$ 
 
 If we plug in our values for p=0.01 and n = 100 With a calculator the answer to two decimal places is 0.63.
@@ -66,4 +68,4 @@ This approximation holds roughly to the number of decimal places of p.
 
 The expression is particularly nice when we assume n*p =1, but even without the assumption, we could still receive an answer in terms of e:
 
-$$ estimation = 1 - 1/(e^{p*n}) $$
+$$ CDF = 1 - 1/(e^{p*n}) $$
