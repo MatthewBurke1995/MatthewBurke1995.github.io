@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://matthewburke1995.github.io/geometry/">
+        <link rel="canonical" href="https://matthewburke1995.github.io/geometric%20distribution/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Geometry - Matt's thoughts on things</title>
+        <title>Geometric Distribution - Matt's thoughts on things</title>
       
     
     
@@ -48,11 +48,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Geometry - Matt's thoughts on things" >
+        <meta  property="og:title"  content="Geometric Distribution - Matt's thoughts on things" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/geometry.png" >
+        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/geometric distribution.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -60,15 +60,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://matthewburke1995.github.io/geometry/" >
+        <meta  property="og:url"  content="https://matthewburke1995.github.io/geometric%20distribution/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Geometry - Matt's thoughts on things" >
+        <meta  name="twitter:title"  content="Geometric Distribution - Matt's thoughts on things" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/geometry.png" >
+        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/geometric distribution.png" >
       
     
     
@@ -88,6 +88,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#geometric-distribution" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -118,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Geometry
+              Geometric Distribution
             
           </span>
         </div>
@@ -225,9 +230,11 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Geometry
+        Geometric Distribution
       </a>
       
     </li>
@@ -281,6 +288,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -295,20 +304,19 @@
                   
 
 
-  <h1>Geometry</h1>
-
+<h1 id="geometric-distribution">Geometric Distribution</h1>
 <div class="admonition quote">
 <p class="admonition-title">interview question</p>
 <p>If a job candidate has a 1% chance of passing an interview, what is the chance that he receives a job offer after 100 interviews?</p>
 </div>
 <p>The first iteration I saw of this question required solving the problem without a calculator. The exact solution is easy with a bit of probability theory. The approximation requires a bit of intuition, and a much longer explanation.</p>
-<p>The probability that they succeed on the Nth interview is the probability of succeeding during an inteview after failing (n-1) interviews i.e.</p>
+<p>The probability that they succeed on the Nth interview is the probability of succeeding during an inteview after failing (n-1) interviews i.e.the pmf is</p>
 <div class="arithmatex">\[
-PMF = p*(1-p)^{n-1}
+f(n) = p*(1-p)^{n-1}
 \]</div>
-<p>And the chance that they would have succeeded on at least 1 of the N interviews is the inverse of them failing every interview i.e.</p>
+<p>And the chance that they would have succeeded on at least 1 of the N interviews is the inverse of them failing every interview i.e. the cdf is</p>
 <div class="arithmatex">\[
-CDF = 1 - (1-p)^n
+f(N \le n) = 1 - (1-p)^n
 \]</div>
 <p>If we plug in our values for p=0.01 and n = 100 With a calculator the answer to two decimal places is 0.63.</p>
 <p>Given that p =1/n in the question my first thought was to find a general solution for all values where p is the inverse of n, i.e. p * n =1. Intuitively whether n is 100 or 1000 the answer should be approximately the same since the expected amount of interview successes is the same (p * n).</p>
@@ -340,14 +348,14 @@ e = \lim_{n \to \infty} (1+1/n)^n
 </code></pre></div>
 <p>This approximation holds roughly to the number of decimal places of p.</p>
 <p>The expression is particularly nice when we assume n*p =1, but even without the assumption, we could still receive an answer in terms of e:</p>
-<div class="arithmatex">\[ estimation = 1 - 1/(e^{p*n}) \]</div>
+<div class="arithmatex">\[ CDF = 1 - 1/(e^{p*n}) \]</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2022</span>
       
     
   </small>

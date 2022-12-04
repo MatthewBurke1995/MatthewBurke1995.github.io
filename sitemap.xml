@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://matthewburke1995.github.io/</loc>
-         <lastmod>2022-12-03</lastmod>
+         <lastmod>2022-12-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://matthewburke1995.github.io/geometry/</loc>
-         <lastmod>2022-12-03</lastmod>
+         <loc>https://matthewburke1995.github.io/geometric%20distribution/</loc>
+         <lastmod>2022-12-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://matthewburke1995.github.io/meritocracy/</loc>
-         <lastmod>2022-12-03</lastmod>
+         <lastmod>2022-12-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://matthewburke1995.github.io/python_profiling/</loc>
-         <lastmod>2022-12-03</lastmod>
+         <lastmod>2022-12-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
