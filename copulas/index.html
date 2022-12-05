@@ -428,7 +428,7 @@
 <p>Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and selecting the right copula.</p>
 </div>
 <p>Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 dollars in MSFT stock. What is the chance that they both drop by 5% on the same day?</p>
-<p>We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of the bond ETF and the Nasdaq ETF, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 10% drop in each of the ETFs. That can be a lot of work especially if we have already independently modelled the underlying assets.</p>
+<p>We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of MSFT and AAPL, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 5% drop in each of the share prices. That can be a lot of work especially if we have already independently modelled the underlying assets.</p>
 <h2 id="build-marginal-distributions-for-the-process-you-want-to-model">Build marginal distributions for the process you want to model</h2>
 <p>First let's work out the distributions of each asset independently. We'll be using the normal distribution as that is conceptually the easiest to work through, although the copula approach works for any underlying distributions. Assuming the returns follow a normal distribution (not fat tailed enough, I know) then we will have to estimate the mean and standard deviation from the sample.</p>
 <div class="arithmatex">\[
@@ -579,7 +579,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2022</span>
       
     
   </small>
