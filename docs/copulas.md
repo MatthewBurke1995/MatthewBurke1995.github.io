@@ -10,7 +10,7 @@ Copulas are a way of estimating the multivariate distribution of independently m
 
 Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 dollars in MSFT stock. What is the chance that they both drop by 5% on the same day?
 
-We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of the bond ETF and the Nasdaq ETF, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 10% drop in each of the ETFs. That can be a lot of work especially if we have already independently modelled the underlying assets.
+We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of MSFT and AAPL, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 5% drop in each of the share prices. That can be a lot of work especially if we have already independently modelled the underlying assets.
 
 ## Build marginal distributions for the process you want to model
 
