@@ -233,9 +233,68 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Copulas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Copulas
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#build-marginal-distributions-for-the-process-you-want-to-model" class="md-nav__link">
+    Build marginal distributions for the process you want to model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pick-a-copula-to-calculate-the-joint-distribution" class="md-nav__link">
+    Pick a copula to calculate the joint distribution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-the-copula-to-find-the-joint-probability-of-two-events" class="md-nav__link">
+    Apply the copula to find the joint probability of two events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphing-the-result" class="md-nav__link">
+    Graphing the result
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrap-up" class="md-nav__link">
+    Wrap up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -306,6 +365,49 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#build-marginal-distributions-for-the-process-you-want-to-model" class="md-nav__link">
+    Build marginal distributions for the process you want to model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pick-a-copula-to-calculate-the-joint-distribution" class="md-nav__link">
+    Pick a copula to calculate the joint distribution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apply-the-copula-to-find-the-joint-probability-of-two-events" class="md-nav__link">
+    Apply the copula to find the joint probability of two events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphing-the-result" class="md-nav__link">
+    Graphing the result
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrap-up" class="md-nav__link">
+    Wrap up
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -321,42 +423,46 @@
 
 <h1 id="copulas">Copulas</h1>
 <p>Copulas are a way of estimating the multivariate distribution of independently modelled univariate distributions. They are a useful way of modelling the joint distribution of a set of random variables.</p>
-<p>Going through an example might be useful. Imagine we have $1000 in a bond ETF and $1000 dollars in a NASDAQ ETF. What is the chance that they both drop by 5% on the same day?</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and selecting the right copula.</p>
+</div>
+<p>Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 dollars in MSFT stock. What is the chance that they both drop by 5% on the same day?</p>
 <p>We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of the bond ETF and the Nasdaq ETF, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 10% drop in each of the ETFs. That can be a lot of work especially if we have already independently modelled the underlying assets.</p>
-<p>First let's work out the distributions of each asset independently. We'll be using the normal distribution as that is conceptually the easiest to work through, although the copula approach works for any underlying distributions.</p>
+<h2 id="build-marginal-distributions-for-the-process-you-want-to-model">Build marginal distributions for the process you want to model</h2>
+<p>First let's work out the distributions of each asset independently. We'll be using the normal distribution as that is conceptually the easiest to work through, although the copula approach works for any underlying distributions. Assuming the returns follow a normal distribution (not fat tailed enough, I know) then we will have to estimate the mean and standard deviation from the sample.</p>
 <div class="arithmatex">\[
   X \sim \mathcal{N}(\mu,\,\sigma^{2})\,.
 \]</div>
 <div class="highlight"><span class="filename">Get the paramters for AAPL and MSFT returns distribution</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">tickers</span> <span class="o">=</span> <span class="n">yf</span><span class="o">.</span><span class="n">Tickers</span><span class="p">(</span><span class="s1">&#39;msft aapl&#39;</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">tickers</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="s2">&quot;max&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">df</span> <span class="o">=</span> <span class="n">tickers</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="s2">&quot;5y&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">aapl_returns</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">][</span><span class="s1">&#39;AAPL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">msft_returns</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">][</span><span class="s1">&#39;MSFT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AAPL return distribution&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">aapl_returns</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># AAPL return distribution</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># count    9257.000000</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># mean        0.001191</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># std         0.027520</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># min        -0.518692</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># 25%        -0.012319</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># 50%         0.000219</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># 75%         0.014386</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># max         0.332281</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">count</span>    <span class="mf">1258.000000</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">mean</span>        <span class="mf">0.001252</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">std</span>         <span class="mf">0.020985</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nb">min</span>        <span class="o">-</span><span class="mf">0.128647</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="mi">25</span><span class="o">%</span>        <span class="o">-</span><span class="mf">0.008779</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="mi">50</span><span class="o">%</span>         <span class="mf">0.001140</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="mi">75</span><span class="o">%</span>         <span class="mf">0.012366</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nb">max</span>         <span class="mf">0.119808</span>
 <a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MSFT return distribution&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">msft_returns</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># MSFT return distribution</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="c1"># count    9257.000000</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1"># mean        0.001130</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="c1"># std         0.021343</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1"># min        -0.301159</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="c1"># 25%        -0.009212</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1"># 50%         0.000353</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="c1"># 75%         0.011335</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># max         0.195652</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">count</span>    <span class="mf">1258.000000</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">mean</span>        <span class="mf">0.001149</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">std</span>         <span class="mf">0.019466</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="nb">min</span>        <span class="o">-</span><span class="mf">0.147390</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="mi">25</span><span class="o">%</span>        <span class="o">-</span><span class="mf">0.007827</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="mi">50</span><span class="o">%</span>         <span class="mf">0.001289</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="mi">75</span><span class="o">%</span>         <span class="mf">0.010938</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="nb">max</span>         <span class="mf">0.142169</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">make CDF for AAPL and MSFT returns</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -365,8 +471,8 @@
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="sd">    &gt;&gt;&gt; round(msft_return_probability(-0.05),2)</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="sd">    0.01</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">mean</span> <span class="o">=</span> <span class="mf">0.00113</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">std</span> <span class="o">=</span> <span class="mf">0.021343</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">mean</span> <span class="o">=</span> <span class="mf">0.00115</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">std</span> <span class="o">=</span> <span class="mf">0.01947</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">zscore</span> <span class="o">=</span> <span class="p">(</span><span class="n">returns</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span><span class="o">/</span><span class="n">std</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">return</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
@@ -375,12 +481,13 @@
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="sd">    &gt;&gt;&gt; round(aapl_return_probability(-0.05),2)</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="sd">    0.03</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="n">mean</span> <span class="o">=</span> <span class="mf">0.00111</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="n">std</span> <span class="o">=</span> <span class="mf">0.027520</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="n">mean</span> <span class="o">=</span> <span class="mf">0.001252</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="n">std</span> <span class="o">=</span> <span class="mf">0.020985</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="n">zscore</span> <span class="o">=</span> <span class="p">(</span><span class="n">returns</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span><span class="o">/</span><span class="n">std</span>
 <a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="k">return</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
 </code></pre></div>
-<p>We now have our undelying univariate probably functions for each set of assets. Now we have to somehow combine them. The easiest way would be to assume that they are independent of each other. We could write an independent copula like this:</p>
+<h2 id="pick-a-copula-to-calculate-the-joint-distribution">Pick a copula to calculate the joint distribution</h2>
+<p>We now have our undelying marginal distributions for each set of assets. Now we have to somehow combine them to form a joint distribution. The easiest way would be to assume that they are independent of each other. We could write an independent copula like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">independent_copula</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">return</span> <span class="n">u</span> <span class="o">*</span> <span class="n">v</span>
 </code></pre></div>
@@ -391,16 +498,17 @@
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When we read this function for the inputs correlated_copula(0.8,0.3) we should say "What is the chance of at least the 80th percentile of returns and at least the 30th percentile of returns?" If they are completely correlated then when one distribution returns the 80th percentile then the other distribution must also return the 80th percentile, therefore: 
+<p>When we read this function for the inputs correlated_copula(0.8,0.3) we should say "What is the chance of at least the 80th percentile of returns and at least the 30th percentile of returns?" If they are completely correlated then when one distribution returns the 80th percentile then the other distribution must also return at least the 80th percentile, therefore: 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>    <span class="n">correlated_copula</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span> <span class="o">==</span> <span class="n">correlated_copula</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span> 
 </code></pre></div></p>
 </div>
 <p>Which gives us a much more realistic 3% chance, this is problematic in that we cannot prove that they are completely correlated and likely overestimates the risk. Going by this metric we could reduce our risk by dropping AAPL entirely and putting all our money in MSFT, this is the opposite of the mantra that "Diversification is the only free lunch.”</p>
-<p>Let's take the assumption that they are inversely correlated.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">uncorrelated_copula</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+<p>Let's make the assumption that they are inversely correlated, which gives us the following copula:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">inversely_correlated_copula</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">v</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
-<p>This gives us a value of 0, if AAPL were truly uncorrelated with MSFT then there would be no days in which they both lose money.</p>
+<p>Accordingly if AAPL were truly uncorrelated with MSFT then there would be no days in which they both lose money and the joint probability of a 5% loss on both assets would be 0.</p>
+<p>An alternative copula that we can use is the gumbel copula which takes into account the correlation of the underlying marginal distributions. You can see the code below.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">def</span> <span class="nf">gumbel_copula</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
@@ -409,6 +517,62 @@
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">copula</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(((</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">u</span><span class="p">))</span><span class="o">**</span><span class="n">alpha</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">**</span><span class="n">alpha</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">alpha</span><span class="p">))</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">return</span> <span class="n">copula</span>
 </code></pre></div>
+<p>In the case of the gumbel copula, when alpha is equal to one then the copula behaves the same as the independent copula. When alpha approaches infinity it behaves like the inversely correlated copula. So you can guess that alpha is related to the correlation of the series u and v.</p>
+<p>To calculate alpha we first calculate the kendall tau value of the two series. Kendall's tau can be described as a type of rank correlation coefficient. When making the calculation we use the probability values and not the values of the underlying returns i.e.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kendalltau</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">def</span> <span class="nf">calculate_alpha</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">tau</span> <span class="o">=</span> <span class="n">kendalltau</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">correlation</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tau</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="apply-the-copula-to-find-the-joint-probability-of-two-events">Apply the copula to find the joint probability of two events</h2>
+<p>Let's create the probability series from the returns series and calculate our alpha value for MSFT and AAPL:</p>
+<div class="highlight"><span class="filename">calculate the joint probabilites for different copula</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">alpha</span> <span class="o">=</span> <span class="n">calculate_alpha</span><span class="p">(</span><span class="n">aapl_returns</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">aapl_return_probability</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>                        <span class="n">msft_returns</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">msft_return_probability</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> 
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">#2.2015...  </span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">aapl_return_probability</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">)</span><span class="o">*</span><span class="n">msft_return_probability</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">))</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># 0.0002..</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">gumbel_copula</span><span class="p">(</span><span class="n">aapl_return_probability</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">),</span><span class="n">msft_return_probability</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">))</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># 0.0032</span>
+</code></pre></div>
+<p>Even with our very poor modeling of the marginal distributions the gumbel copula is able to give us a much better estimation of the probability that both companies would drop 5% in a single day. Looking at the history over the last 5 years there have been 7 out of 1258 trading days in which both companies dropped 5% (0.0056 by proportion).</p>
+<h2 id="graphing-the-result">Graphing the result</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">independent copula graph</label><label for="__tabbed_1_2">gumbel copula graph</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mf">0.05</span><span class="p">]</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">independent_copula</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;independent_copula.png&quot;</span><span class="p">)</span>
+</code></pre></div>
+<img align="right" alt="Independent Copula" src="/images/independent_copula.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mf">0.05</span><span class="p">]</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">gumbel_copula</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">alpha</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;gumbel_copula.png&quot;</span><span class="p">)</span>
+</code></pre></div>
+<img align="right" alt="Gumbel Copula" src="/images/gumbel_copula.png" /></p>
+</div>
+</div>
+</div>
+<p>If you look at the images closely you can see the graph is steeper for the gumbel copula, which means the joint probability is higher for two unlikely but correlated events.</p>
+<h2 id="wrap-up">Wrap up</h2>
+<p>Copula's are used in risk management for their flexibility in combining a wide range of probability models into a joint probability. Even with a very simple marginal probability model the combined copula was reasonably accurate in estimating the joint distribution for correlated assets. You could use copulas for predicting the network load on two related software services or for calculating the risk of correlated assets that are modelled differently.</p>
 
   <hr>
 <div class="md-source-file">
