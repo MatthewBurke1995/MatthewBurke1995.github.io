@@ -224,8 +224,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../geometry/" class="md-nav__link">
-        Geometry
+      <a href="../copulas/" class="md-nav__link">
+        Copulas
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geometric%20distribution/" class="md-nav__link">
+        Geometric Distribution
       </a>
     </li>
   
@@ -467,13 +482,12 @@
 </code></pre></div></p>
 <h2 id="line_profiler">line_profiler</h2>
 <p>Once you've worked out which function is using up the most CPU resources you can dive in deeper and investigate which line is using the most CPU resources with line_profiler. To run this you'll need to download the pip package line_profiler, add the @profile decorator to the functions you want to profile and finally run the line_profiler from the command line </p>
-<p>``` py title="function_to_profile.py
-@profile
-def slow_add(a: int, b: int) -&gt; int:
-    time.sleep(1)
-    return a+b</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>``` bash
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kernprof -l function_to_profile.py
+<div class="highlight"><span class="filename">function_to_profile.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@profile</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span> <span class="nf">slow_add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kernprof -l function_to_profile.py
 </code></pre></div>
 <p>See the <a href="https://github.com/pyutils/line_profiler">github repo</a> github repo for more information.</p>
 <h2 id="memory_profiler">memory_profiler</h2>
@@ -486,7 +500,7 @@ def slow_add(a: int, b: int) -&gt; int:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2022</span>
       
     
   </small>

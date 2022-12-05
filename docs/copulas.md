@@ -2,11 +2,19 @@
 
 Copulas are a way of estimating the multivariate distribution of independently modelled univariate distributions. They are a useful way of modelling the joint distribution of a set of random variables.
 
-Going through an example might be useful. Imagine we have $1000 in a bond ETF and $1000 dollars in a NASDAQ ETF. What is the chance that they both drop by 5% on the same day?
+
+!!! warning
+
+    Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and selecting the right copula.
+
+
+Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 dollars in MSFT stock. What is the chance that they both drop by 5% on the same day?
 
 We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of the bond ETF and the Nasdaq ETF, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 10% drop in each of the ETFs. That can be a lot of work especially if we have already independently modelled the underlying assets.
 
-First let's work out the distributions of each asset independently. We'll be using the normal distribution as that is conceptually the easiest to work through, although the copula approach works for any underlying distributions.
+## Build marginal distributions for the process you want to model
+
+First let's work out the distributions of each asset independently. We'll be using the normal distribution as that is conceptually the easiest to work through, although the copula approach works for any underlying distributions. Assuming the returns follow a normal distribution (not fat tailed enough, I know) then we will have to estimate the mean and standard deviation from the sample.
 
 \[
   X \sim \mathcal{N}(\mu,\,\sigma^{2})\,.
@@ -17,33 +25,32 @@ First let's work out the distributions of each asset independently. We'll be usi
 import yfinance as yf
 
 tickers = yf.Tickers('msft aapl')
-df = tickers.history(period="max").dropna()
+df = tickers.history(period="5y")
 aapl_returns = df['Close']['AAPL'].pct_change().dropna()
 msft_returns = df['Close']['MSFT'].pct_change().dropna()
 
 print("AAPL return distribution")
 print(aapl_returns.describe())
 # AAPL return distribution
-# count    9257.000000
-# mean        0.001191
-# std         0.027520
-# min        -0.518692
-# 25%        -0.012319
-# 50%         0.000219
-# 75%         0.014386
-# max         0.332281
+count    1258.000000
+mean        0.001252
+std         0.020985
+min        -0.128647
+25%        -0.008779
+50%         0.001140
+75%         0.012366
+max         0.119808
 
 print("MSFT return distribution")
 print(msft_returns.describe())
-# MSFT return distribution
-# count    9257.000000
-# mean        0.001130
-# std         0.021343
-# min        -0.301159
-# 25%        -0.009212
-# 50%         0.000353
-# 75%         0.011335
-# max         0.195652
+count    1258.000000
+mean        0.001149
+std         0.019466
+min        -0.147390
+25%        -0.007827
+50%         0.001289
+75%         0.010938
+max         0.142169
 ```
 
 ``` py title="make CDF for AAPL and MSFT returns" 
@@ -54,8 +61,8 @@ def msft_return_probability(returns:float) -> float:
     >>> round(msft_return_probability(-0.05),2)
     0.01
     """
-    mean = 0.00113
-    std = 0.021343
+    mean = 0.00115
+    std = 0.01947
     zscore = (returns - mean)/std
     return norm.cdf(zscore)
 
@@ -64,14 +71,16 @@ def aapl_return_probability(returns:float) -> float:
     >>> round(aapl_return_probability(-0.05),2)
     0.03
     """
-    mean = 0.00111
-    std = 0.027520
+    mean = 0.001252
+    std = 0.020985
     zscore = (returns - mean)/std
     return norm.cdf(zscore)
 
 ```
 
-We now have our undelying univariate probably functions for each set of assets. Now we have to somehow combine them. The easiest way would be to assume that they are independent of each other. We could write an independent copula like this:
+## Pick a copula to calculate the joint distribution
+
+We now have our undelying marginal distributions for each set of assets. Now we have to somehow combine them to form a joint distribution. The easiest way would be to assume that they are independent of each other. We could write an independent copula like this:
 
 ``` py
 def independent_copula(u, v):
@@ -87,7 +96,7 @@ def correlated_copula(u,v):
     return max(u,v)
 ```
 !!! note
-    When we read this function for the inputs correlated_copula(0.8,0.3) we should say "What is the chance of at least the 80th percentile of returns and at least the 30th percentile of returns?" If they are completely correlated then when one distribution returns the 80th percentile then the other distribution must also return the 80th percentile, therefore: 
+    When we read this function for the inputs correlated_copula(0.8,0.3) we should say "What is the chance of at least the 80th percentile of returns and at least the 30th percentile of returns?" If they are completely correlated then when one distribution returns the 80th percentile then the other distribution must also return at least the 80th percentile, therefore: 
     ``` py 
         correlated_copula(0.8,0.3) == correlated_copula(0.8,0.8) 
     ```
@@ -95,15 +104,16 @@ def correlated_copula(u,v):
 
 Which gives us a much more realistic 3% chance, this is problematic in that we cannot prove that they are completely correlated and likely overestimates the risk. Going by this metric we could reduce our risk by dropping AAPL entirely and putting all our money in MSFT, this is the opposite of the mantra that "Diversification is the only free lunch.”
 
-Let's take the assumption that they are inversely correlated.
+Let's make the assumption that they are inversely correlated, which gives us the following copula:
 
 ``` py
-def uncorrelated_copula(u,v):
+def inversely_correlated_copula(u,v):
     return max(u+v-1,0)
 ```
 
-This gives us a value of 0, if AAPL were truly uncorrelated with MSFT then there would be no days in which they both lose money.
+Accordingly if AAPL were truly uncorrelated with MSFT then there would be no days in which they both lose money and the joint probability of a 5% loss on both assets would be 0.
 
+An alternative copula that we can use is the gumbel copula which takes into account the correlation of the underlying marginal distributions. You can see the code below.
 
 ``` py
 import numpy as np
@@ -114,4 +124,77 @@ def gumbel_copula(u, v, alpha):
     copula = np.exp(-(((-np.log(u))**alpha + (-np.log(v))**alpha))**(1/alpha))
     return copula
 ```
+
+In the case of the gumbel copula, when alpha is equal to one then the copula behaves the same as the independent copula. When alpha approaches infinity it behaves like the inversely correlated copula. So you can guess that alpha is related to the correlation of the series u and v.
+
+To calculate alpha we first calculate the kendall tau value of the two series. Kendall's tau can be described as a type of rank correlation coefficient. When making the calculation we use the probability values and not the values of the underlying returns i.e.
+
+``` py
+from scipy.stats import kendalltau
+
+def calculate_alpha(u,v):
+    u=np.array(u)
+    v=np.array(v)
+    tau = kendalltau(u,v).correlation
+    return 1/(1-tau)
+```
+
+
+##Apply the copula to find the joint probability of two events
+Let's create the probability series from the returns series and calculate our alpha value for MSFT and AAPL:
+
+``` py title="calculate the joint probabilites for different copula"
+alpha = calculate_alpha(aapl_returns.apply(lambda x: aapl_return_probability(x)),
+                        msft_returns.apply(lambda x: msft_return_probability(x)))
+                        
+print(alpha) 
+#2.2015...  
+
+
+print(aapl_return_probability(-0.05)*msft_return_probability(-0.05))
+# 0.0002..
+
+print(gumbel_copula(aapl_return_probability(-0.05),msft_return_probability(-0.05))
+# 0.0032
+```
+
+
+Even with our very poor modeling of the marginal distributions the gumbel copula is able to give us a much better estimation of the probability that both companies would drop 5% in a single day. Looking at the history over the last 5 years there have been 7 out of 1258 trading days in which both companies dropped 5% (0.0056 by proportion).
+
+
+## Graphing the result
+
+=== "independent copula graph"
+
+    ``` py
+    X,Y = np.mgrid[0:0.5:0.05, 0:0.5:0.05]
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(X, Y, independent_copula(X,Y), c= 'red')
+    plt.savefig("independent_copula.png")
+    ```
+    ![Independent Copula](/images/independent_copula.png){align=right }
+ 
+
+=== "gumbel copula graph"
+    ``` py
+    X,Y = np.mgrid[0:0.5:0.05, 0:0.5:0.05]
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(X, Y, gumbel_copula(X,Y,alpha), c= 'red')
+    plt.savefig("gumbel_copula.png")
+    ```
+    ![Gumbel Copula](/images/gumbel_copula.png){align=right }
+
+If you look at the images closely you can see the graph is steeper for the gumbel copula, which means the joint probability is higher for two unlikely but correlated events.
+
+
+
+## Wrap up
+
+Copula's are used in risk management for their flexibility in combining a wide range of probability models into a joint probability. Even with a very simple marginal probability model the combined copula was reasonably accurate in estimating the joint distribution for correlated assets. You could use copulas for predicting the network load on two related software services or for calculating the risk of correlated assets that are modelled differently.
 
