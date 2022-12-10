@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://matthewburke1995.github.io/python_profiling/">
+        <link rel="canonical" href="https://matthewburke1995.github.io/Unix%20Named%20Pipes/">
       
       <link rel="icon" href="../assets/book.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Python Profiling - Matt's thoughts on things</title>
+        <title>Unix Named Pipes - Matt's thoughts on things</title>
       
     
     
@@ -48,11 +48,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Python Profiling - Matt's thoughts on things" >
+        <meta  property="og:title"  content="Unix Named Pipes - Matt's thoughts on things" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/python_profiling.png" >
+        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/Unix Named Pipes.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -60,15 +60,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://matthewburke1995.github.io/python_profiling/" >
+        <meta  property="og:url"  content="https://matthewburke1995.github.io/Unix%20Named%20Pipes/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Python Profiling - Matt's thoughts on things" >
+        <meta  name="twitter:title"  content="Unix Named Pipes - Matt's thoughts on things" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/python_profiling.png" >
+        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/Unix Named Pipes.png" >
       
     
     
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#python-profiling" class="md-skip">
+        <a href="#unix-named-pipes" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Python Profiling
+              Unix Named Pipes
             
           </span>
         </div>
@@ -220,11 +220,73 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../Unix%20Named%20Pipes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Unix Named Pipes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Unix Named Pipes
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#message-queues" class="md-nav__link">
+    Message Queues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unix-pipes" class="md-nav__link">
+    Unix Pipes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unix-named-pipes-as-a-message-queue" class="md-nav__link">
+    Unix Named Pipes as a Message Queue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wrap-up" class="md-nav__link">
+    Wrap up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -280,94 +342,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Python Profiling
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../python_profiling/" class="md-nav__link">
         Python Profiling
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#timeit" class="md-nav__link">
-    %timeit
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#memit" class="md-nav__link">
-    %memit
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usrbintime" class="md-nav__link">
-    /usr/bin/time
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cprofile" class="md-nav__link">
-    cProfile
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#line_profiler" class="md-nav__link">
-    line_profiler
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#memory_profiler" class="md-nav__link">
-    memory_profiler
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#py-spy" class="md-nav__link">
-    py-spy
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -399,50 +378,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#timeit" class="md-nav__link">
-    %timeit
+  <a href="#message-queues" class="md-nav__link">
+    Message Queues
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#memit" class="md-nav__link">
-    %memit
+  <a href="#unix-pipes" class="md-nav__link">
+    Unix Pipes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#usrbintime" class="md-nav__link">
-    /usr/bin/time
+  <a href="#unix-named-pipes-as-a-message-queue" class="md-nav__link">
+    Unix Named Pipes as a Message Queue
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cprofile" class="md-nav__link">
-    cProfile
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#line_profiler" class="md-nav__link">
-    line_profiler
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#memory_profiler" class="md-nav__link">
-    memory_profiler
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#py-spy" class="md-nav__link">
-    py-spy
+  <a href="#wrap-up" class="md-nav__link">
+    Wrap up
   </a>
   
 </li>
@@ -462,58 +420,53 @@
                   
 
 
-<h1 id="python-profiling">Python Profiling</h1>
-<p>I've seen a few posts on Hacker News recently about writing fast and efficient code. Fortunately this example was written in Python which is probably the language that could save the most instruction cycles globally with a bit of optimization. I say this because Python is ubiquitous when it comes to writing prototype scripts that eventually get pushed to production under project deadlines.</p>
-<p>The rule of thumb that I use, and remind my coworkers is that the order of code optimization is:</p>
-<ol>
-<li>Make it work - optimize for business functionality (MVP)</li>
-<li>Make it right - optimize for human readability (documentation, test cases, extendable)</li>
-<li>Make it fast - optimize for execution speed </li>
-</ol>
-<p>In the work of data science, the opportunities to get to the third stage are rare enough that they aren't covered in many learning materials but important enough that you need to know them. In this post i'll cover the profiling basics when using Python.</p>
-<p>Be aware that many profiling results are dependent on the current state of the computer running the profiler, it's best to run each result several times to normalize across background processes that may be happening.</p>
-<h2 id="timeit">%timeit</h2>
-<p>For those using Jupyter notebooks or an iPython environment, %timeit is the easiest way to start measuring execution time of functions and therefore being able to compare speeds of different solutions.</p>
-<div class="highlight"><span class="filename">timeit</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">%</span><span class="n">timeit</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#100000 loops, best of 5: 12.1 µs per loop</span>
+<h1 id="unix-named-pipes">Unix Named Pipes</h1>
+<h2 id="message-queues">Message Queues</h2>
+<p>Message queues are an architectural pattern to decouple the process of gathering tasks and resolving tasks. There are a couple of reasons why you would use this design pattern. It might not be possible to complete the task within a single request reply loop or it might be easier to resolve tasks in a batch method due to large initial process startup costs.</p>
+<p>Assuming that the process that resolves the work is different to the one that gathers the work (i.e. is a message queue and not a task queue) then this is also a form of interprocess communication. Other options for interprocess communication could be JSON over HTTP (for processes across servers), shared memory such as Redis or the filesystem for processes that run on the same server.</p>
+<h2 id="unix-pipes">Unix Pipes</h2>
+<p>In unix everything is a file, including pipes. As a brief review pipes are a way of turning stdin (read as "standard input") to stdout ("standard output"). The following script uses <code>cat</code> which takes a file or several files from stdin and prints to stdout. The pipe in the middle takes that stdout and converts it to stdin for the next process which is also cat and prints the text to stdout. 'cat' converts stdin to stdout and the pipe converts stdout to stdin, together they act like the identity function for any text. The following two commands do the same thing.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cat book.txt        
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cat book.txt <span class="p">|</span> cat  
 </code></pre></div>
-<h2 id="memit">%memit</h2>
-<p>memit is the easiest way to start memory profiling in a Jupyter Notebook or iPython environment.
-<div class="highlight"><span class="filename">memit</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">memory_profiler</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">%</span><span class="n">load_ext</span> <span class="n">memory_profiler</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">%</span><span class="n">memit</span> <span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="o">%</span><span class="n">memit</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
-</code></pre></div></p>
-<h2 id="usrbintime">/usr/bin/time</h2>
-<p>/usr/bin/time is a unix utility to time the execution of any program. It doesn't have as much detail as the python specific profilers but can be used for all types of programs that run as a unix CLI.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/usr/bin/time curl https://matthewburke.xyz &gt;&gt; /dev/null 
-</code></pre></div></p>
-<h2 id="cprofile">cProfile</h2>
-<p>cProfile is part of the standard library and will show you the time spent in each function of a certain program.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python -m cProfile -s cumulative script.py
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python -m cProfile -s cumulative script.py <span class="p">|</span> grep script.py 
-</code></pre></div></p>
-<h2 id="line_profiler">line_profiler</h2>
-<p>Once you've worked out which function is using up the most CPU resources you can dive in deeper and investigate which line is using the most CPU resources with line_profiler. To run this you'll need to download the pip package line_profiler, add the @profile decorator to the functions you want to profile and finally run the line_profiler from the command line </p>
-<div class="highlight"><span class="filename">function_to_profile.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@profile</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span> <span class="nf">slow_add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<p>😮‍💨 that was a lot to parse out. Pipes are powerful and efficient when each process can handle the data as a stream. We can compare the time taken to run a pipe of 20 cats versus the time taken to run a pipe of one cat.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">time</span> cat book.txt                       <span class="c1">#...  0.007 total</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">time</span> cat book.txt <span class="p">|</span> cat <span class="p">|</span> 🐱x20 <span class="p">|</span> cat   <span class="c1">#...  0.021 total</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kernprof -l function_to_profile.py
+<p>More processes means more processing but there is a lot of time saved when you dont have to read from the file system each time. We could also create a strange pipe by using cat if we save the stdout to an intermediate file and then read that file as the stdin for the next process, this takes roughly twice the time and also twice the cpu power as the unix pipe version.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cat book.txt &gt; tempfile<span class="p">;</span> cat tempfile &gt; tempfile <span class="p">;</span> cat tempfile &gt; tempfile<span class="p">;</span>...
 </code></pre></div>
-<p>See the <a href="https://github.com/pyutils/line_profiler">github repo</a> github repo for more information.</p>
-<h2 id="memory_profiler">memory_profiler</h2>
-<p>The memory_profiler works in much the same way as the line_profiler. Have a look at the <a href="https://github.com/pythonprofilers/memory_profiler">official documentation</a> to get started. </p>
-<h2 id="py-spy">py-spy</h2>
-<p>py-spy (note the hyphen) is an incredible piece of work which allows you to profile a python process as it is running without slowing down the process (too much). You can imagine how useful it would be when trying to determine what the bottleneck is for a web server when serving real traffic. You can find more information on the <a href="https://github.com/benfred/py-spy">github repo</a>.</p>
+<p>Writing to files is always an option, there is a huge overlap between pipes and files in terms of functionality. But one reason why files aren't appropriate is when we want to make sure that each line is processed exactly once even if several processes are accessing the content.</p>
+<h2 id="unix-named-pipes-as-a-message-queue">Unix Named Pipes as a Message Queue</h2>
+<p>Unix has a feature called 'Named Pipes' where we can give a pipe a name, let it persist in the file system. Unlike regular pipes named pipes can persist over time, and unlike regular files they have the guarantee that each line will only be processed once.</p>
+<div class="highlight"><span class="filename">Read and write to named pipes</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">os</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">PIPE_NAME</span> <span class="o">=</span> <span class="s2">&quot;my_named_pipe&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">def</span> <span class="nf">write_named_pipe</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">,</span><span class="n">message</span><span class="p">):</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  <span class="c1"># Create the named pipe if it does not exist</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">):</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">os</span><span class="o">.</span><span class="n">mkfifo</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  <span class="c1"># Open the named pipe</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pipe</span><span class="p">:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="c1"># Write the message to the pipe</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">pipe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello, other process!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">pipe</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">def</span> <span class="nf">read_named_pipe</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">):</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>  <span class="c1"># Open the named pipe for reading</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pipe</span><span class="p">:</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="wrap-up">Wrap up</h2>
+<p>You can use named pipes as a very simple message queue on any unix distribution.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2022</span>
       
     
   </small>
@@ -538,7 +491,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../meritocracy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Meritocracy" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Matt&#39;s thoughts on things" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -547,11 +500,26 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Meritocracy
+              Matt's thoughts on things
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../copulas/" class="md-footer__link md-footer__link--next" aria-label="Next: Copulas" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Copulas
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
