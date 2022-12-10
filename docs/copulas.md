@@ -198,3 +198,61 @@ If you look at the images closely you can see the graph is steeper for the gumbe
 
 Copula's are used in risk management for their flexibility in combining a wide range of probability models into a joint probability. Even with a very simple marginal probability model the combined copula was reasonably accurate in estimating the joint distribution for correlated assets. You could use copulas for predicting the network load on two related software services or for calculating the risk of correlated assets that are modelled differently.
 
+Below I have included a chart comparing the probability estimates for the Gumbel and Independent copulas for when `#!python u=v`. Once again the Gumbel copula estimates a higher probability of two correlated but low probability events.
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.0/echarts.min.js"></script>
+
+<div id="chart" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+  // Initialize the echarts instance based on the prepared dom
+  var myChart = echarts.init(document.getElementById('chart'));
+
+  // Specify the configuration items and data for the chart
+
+option = {
+  title:{
+    text: 'Gumbel and Independent copula',
+    subtext: 'y=Copula(x,x)'
+    
+  },
+  tooltip: {
+    trigger: 'item',
+    formatter: '{a} {b},{c} '
+  },
+  xAxis: {
+    data: [0.   , 0.025, 0.05 , 0.075, 0.1  , 0.125, 0.15 , 0.175, 0.2  ,
+       0.225, 0.25 , 0.275, 0.3  , 0.325, 0.35 , 0.375, 0.4  , 0.425,
+       0.45 , 0.475],
+    name:''
+  },
+  yAxis: {name: ''},
+  series: [
+    {
+      data: [0.      , 0.000625, 0.0025  , 0.005625, 0.01    , 0.015625,
+       0.0225  , 0.030625, 0.04    , 0.050625, 0.0625  , 0.075625,
+       0.09    , 0.105625, 0.1225  , 0.140625, 0.16    , 0.180625,
+       0.2025  , 0.225625],
+      type: 'line',
+      stack: 'x',
+      areaStyle: {},
+      name:'Independent'
+    },
+    {
+      data: [0.        , 0.0065148 , 0.01677541, 0.02917153, 0.04319615,
+       0.0585712 , 0.07511579, 0.09270087, 0.11122874, 0.13062234,
+       0.150819  , 0.17176657, 0.19342082, 0.21574365, 0.23870185,
+       0.26226616, 0.28641054, 0.31111165, 0.33634844, 0.36210178],
+      type: 'line',
+      stack: 'x',
+      areaStyle: {},
+      name:'Gumbel'
+    }
+  ]
+};
+
+  // Display the chart using the configuration items and data just specified.
+  myChart.setOption(option);
+</script>
+
+

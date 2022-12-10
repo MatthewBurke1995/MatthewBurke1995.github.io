@@ -2,6 +2,8 @@ site_name: Matt's thoughts on things
 
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/book.png
 
 plugins:
   - search # necessary for search to work
