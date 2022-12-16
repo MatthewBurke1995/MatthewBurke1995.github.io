@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://matthewburke1995.github.io/geometric%20distribution/">
+        <link rel="canonical" href="https://matthewburke1995.github.io/Golden%20Rule%20Of%20Time/">
       
       <link rel="icon" href="../assets/book.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Geometric Distribution - Matt's thoughts on things</title>
+        <title>The Golden rule of Time - Matt's thoughts on things</title>
       
     
     
@@ -48,11 +48,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Geometric Distribution - Matt's thoughts on things" >
+        <meta  property="og:title"  content="The Golden rule of Time - Matt's thoughts on things" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/geometric distribution.png" >
+        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/Golden Rule Of Time.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -60,15 +60,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://matthewburke1995.github.io/geometric%20distribution/" >
+        <meta  property="og:url"  content="https://matthewburke1995.github.io/Golden%20Rule%20Of%20Time/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Geometric Distribution - Matt's thoughts on things" >
+        <meta  name="twitter:title"  content="The Golden rule of Time - Matt's thoughts on things" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/geometric distribution.png" >
+        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/Golden Rule Of Time.png" >
       
     
     
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#geometric-distribution" class="md-skip">
+        <a href="#the-golden-rule-of-time" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Geometric Distribution
+              The Golden rule of Time
             
           </span>
         </div>
@@ -220,11 +220,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../Golden%20Rule%20Of%20Time/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         The Golden rule of Time
       </a>
+      
     </li>
   
 
@@ -280,21 +290,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../geometric%20distribution/" class="md-nav__link">
         Geometric Distribution
       </a>
-      
     </li>
   
 
@@ -362,58 +362,19 @@
                   
 
 
-<h1 id="geometric-distribution">Geometric Distribution</h1>
-<div class="admonition quote">
-<p class="admonition-title">interview question</p>
-<p>If a job candidate has a 1% chance of passing an interview, what is the chance that he receives a job offer after 100 interviews?</p>
-</div>
-<p>The first iteration I saw of this question required solving the problem without a calculator. The exact solution is easy with a bit of probability theory. The approximation requires a bit of intuition, and a much longer explanation.</p>
-<p>The probability that they succeed on the Nth interview is the probability of succeeding during an inteview after failing (n-1) interviews i.e.the pmf is</p>
-<div class="arithmatex">\[
-f(n) = p*(1-p)^{n-1}
-\]</div>
-<p>And the chance that they would have succeeded on at least 1 of the N interviews is the inverse of them failing every interview i.e. the cdf is</p>
-<div class="arithmatex">\[
-f(N \le n) = 1 - (1-p)^n
-\]</div>
-<p>If we plug in our values for p=0.01 and n = 100 With a calculator the answer to two decimal places is 0.63.</p>
-<p>Given that p =1/n in the question my first thought was to find a general solution for all values where p is the inverse of n, i.e. p * n =1. Intuitively whether n is 100 or 1000 the answer should be approximately the same since the expected amount of interview successes is the same (p * n).</p>
-<p>The mathematical definition of e is close to what we want but we have the wrong sign in the brackets.</p>
-<div class="arithmatex">\[
-e = \lim_{n \to \infty} (1+1/n)^n
-\]</div>
-<p>Let's introduce an approximation:</p>
-<div class="arithmatex">\[
-\lim_{x \to \infty} (1 + 1/x)^n = (1 + n/x)
-\]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>in this approximation we can replace x with -x and n with -n and the approximation still holds i.e. for numbers very close to 1 the power operation is similar to multiplication.</p>
-</div>
-<div class="highlight"><span class="filename">correect to the 5th decimal place</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="mf">1.001</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.004</span> <span class="o">&lt;</span> <span class="mf">0.00001</span>
-</code></pre></div>
-<p>let's use this to get the negative version of the definition of e. Taking n to the limit of infinity:</p>
-<div class="arithmatex">\[ (1-1/n)^n = (1+1/n)^{-n} = 1/e \]</div>
-<p>Each time we swap a sign we are taking the reciprocal. If we take the reciprocal twice we get the original (applying any inverse function twice is the identity function).</p>
-<div class="arithmatex">\[ e = \lim_{n \to \infty} (1-1/n)^{-n} \]</div>
-<div class="arithmatex">\[ 1/e = \lim_{n \to \infty} (1-1/n)^{n} \]</div>
-<p>with this second limit we are getting very close to the geometric distributions CDF, let's swap out the expression. for p * n =1</p>
-<div class="arithmatex">\[ CDF = 1 - (1-p)^n = 1 - 1/e \]</div>
-<div class="highlight"><span class="filename">e approximation vs calculator</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">e</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">calculated</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">0.01</span><span class="p">)</span><span class="o">**</span><span class="mi">100</span> <span class="c1">#apprxomiately 0.63</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">estimated</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">e</span>             <span class="c1">#approximately 0.63</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">calculated</span> <span class="o">-</span> <span class="n">estimated</span><span class="p">)</span>  <span class="o">&lt;</span> <span class="mf">0.01</span>
-</code></pre></div>
-<p>This approximation holds roughly to the number of decimal places of p.</p>
-<p>The expression is particularly nice when we assume n*p =1, but even without the assumption, we could still receive an answer in terms of e:</p>
-<div class="arithmatex">\[ CDF = 1 - 1/(e^{p*n}) \]</div>
+<h1 id="the-golden-rule-of-time">The Golden rule of Time</h1>
+<p>Why do some people in safe jobs work long nights with no chance of reward? Why do we espouse values that we don't follow?</p>
+<p>Recently, I read "The Time Paradox" by Zimbardo and Boyd. I enjoy reading pop psychology as long as they have a bit more depth and legitimacy than power posing, fortunately Boyd and Zimbardo's writing about the psychology of time is profound. Although it is not the focus of the book, the section I enjoyed the most was their discussion of "The Golden Rule of Time".</p>
+<p>The golden rule of time goes something like this: "Spend your time the way you wish others would spend their time." A reference point might be more useful, imagine your son or daughter has to make the choice of working until late with no prospect of promotion in the immediate future or going home on time? Almost everyone would wish that their child enjoyed their time with family yet that is not the choice that many people make in reality. The golden rule of time is a way of framing the strangeness of these choices and clarifying the decision making process.</p>
+<p>As to the questions in the first paragraph, I have no good answer. Maybe it is due to Freud's hypothesized fear of death which we don't consider when thinking of others decision  making. Maybe we are at our most rational when we consider the plight of others. Hopefully with the golden rule of time in your toolbelt you can use that rationality and apply it to your own time.</p>
+<p><a href="https://www.amazon.com/Time-Paradox-Psychology-That-Change/dp/1416541993">The Time Paradox: The New Psychology of Time That Will Change Your Life</a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 16, 2022</span>
       
     
   </small>
@@ -438,7 +399,7 @@ e = \lim_{n \to \infty} (1+1/n)^n
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../copulas/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Copulas" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Matt&#39;s thoughts on things" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -447,20 +408,20 @@ e = \lim_{n \to \infty} (1+1/n)^n
               <span class="md-footer__direction">
                 Previous
               </span>
-              Copulas
+              Matt's thoughts on things
             </div>
           </div>
         </a>
       
       
         
-        <a href="../meritocracy/" class="md-footer__link md-footer__link--next" aria-label="Next: Meritocracy" rel="next">
+        <a href="../LPPL%20Log%20Period%20Power%20Law/" class="md-footer__link md-footer__link--next" aria-label="Next: LPPL (Log Period Power Law)" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Meritocracy
+              LPPL (Log Period Power Law)
             </div>
           </div>
           <div class="md-footer__button md-icon">
