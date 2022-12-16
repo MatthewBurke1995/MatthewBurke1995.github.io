@@ -34,7 +34,18 @@ Writing to files is always an option, there is a huge overlap between pipes and 
 
 Unix has a feature called 'Named Pipes' where we can give a pipe a name, let it persist in the file system. Unlike regular pipes named pipes can persist over time, and unlike regular files they have the guarantee that each line will only be processed once.
 
-``` python title="Read and write to named pipes"
+``` sh title="named pipes in bash"
+mkfifo newnamedpipe
+echo "hi" > newnamedpipe
+
+#open up new terminal
+cat newnamedpipe #output of "hi"
+cat newnamedpipe #no output, waiting for new message to join queue.
+
+```
+
+
+``` python title="Read and write to named pipes in Python"
 import os
 PIPE_NAME = "my_named_pipe"
 
