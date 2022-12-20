@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ gh-deploy ]
 
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
