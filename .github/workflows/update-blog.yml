@@ -1,0 +1,30 @@
+name: Update Blog CI
+
+on:
+  push:
+    branches: [ gh-deploy ]
+  pull_request:
+    branches: [ gh-deploy ]
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: unnecessary
+    - name: Add Known Hosts
+      run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+    - name: Execute remote commands to deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          cd /home/project/data/static/blog
+          git pull 
