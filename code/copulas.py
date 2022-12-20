@@ -41,7 +41,7 @@ def independent_copula(u, v):
 
 import numpy as np
 def gumbel_copula(u, v, alpha):
-    """"""
+    """Calculate joint probability while accounting for correlation"""
     u = np.asarray(u)
     v = np.asarray(v)
     # compute copula
@@ -51,6 +51,7 @@ def gumbel_copula(u, v, alpha):
 
 
 def calculate_alpha(u,v):
+    """Alpha value to be used in gumbel copula"""
     u=np.array(u)
     v=np.array(v)
     tau = kendalltau(u,v).correlation
