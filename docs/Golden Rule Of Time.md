@@ -1,6 +1,6 @@
 # The Golden Rule of Time
 
-Why do some people in safe jobs work long nights with no chance of reward? Why do we espouse values that we don't follow?
+Why do some people in safe jobs work long nights with no chance of reward? Why do we espouse certain values that we don't follow?
 
 Recently, I read "The Time Paradox" by Zimbardo and Boyd. I enjoy reading pop psychology as long as they have a bit more depth and legitimacy than power posing, fortunately Boyd and Zimbardo's writing about the psychology of time is profound. Although it is not the focus of the book, the section I enjoyed the most was their discussion of "The Golden Rule of Time".
 
