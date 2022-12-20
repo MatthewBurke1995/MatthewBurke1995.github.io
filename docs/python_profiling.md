@@ -2,7 +2,7 @@
 
 I've seen a few posts on Hacker News recently about writing fast and efficient code. Fortunately this example was written in Python which is probably the language that could save the most instruction cycles globally with a bit of optimization. I say this because Python is ubiquitous when it comes to writing prototype scripts that eventually get pushed to production under project deadlines.
 
-The rule of thumb that I use, and remind my coworkers is that the order of code optimization is:
+The rule of thumb that I like to use, and remind my coworkers, is that the order of code optimization is:
 
 
 1. Make it work - optimize for business functionality (MVP)
