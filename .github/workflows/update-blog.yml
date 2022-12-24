@@ -2,28 +2,19 @@ name: Update Blog CI
 
 on:
   push:
-    branches: [ gh-deploy ]
-  pull_request:
-    branches: [ gh-deploy ]
+    branches: [ master ]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Install SSH key
-      uses: shimataro/ssh-key-action@v2
+    - uses: actions/checkout@v2
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@5.2.1
       with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        known_hosts: unnecessary
-    - name: Add Known Hosts
-      run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-    - name: Execute remote commands to deploy
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        script: |
-          cd /home/project/data/static/blog
-          git pull 
+        switches: -avzr --delete
+        path: site/
+        remote_path: /home/project/data/static/blog
+        remote_host: matthewburke.xyz
+        remote_user: matt
+        remote_key: ${{ secrets.PRIVATE_RSA }}
