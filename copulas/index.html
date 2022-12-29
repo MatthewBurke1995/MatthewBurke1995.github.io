@@ -468,7 +468,7 @@
 <p>Copulas are a way of estimating the multivariate distribution of independently modelled univariate distributions. They are a useful way of modelling the joint distribution of a set of random variables.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and selecting the right copula.</p>
+<p>Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and appropriateness of the copula.</p>
 </div>
 <p>Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 dollars in MSFT stock. What is the chance that they both drop by 5% on the same day?</p>
 <p>We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of MSFT and AAPL, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 5% drop in each of the share prices. That can be a lot of work especially if we have already independently modelled the underlying assets.</p>
@@ -676,7 +676,7 @@ option = {
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2022</span>
       
     
   </small>
