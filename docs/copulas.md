@@ -5,7 +5,7 @@ Copulas are a way of estimating the multivariate distribution of independently m
 
 !!! warning
 
-    Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and selecting the right copula.
+    Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and appropriateness of the copula.
 
 
 Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 dollars in MSFT stock. What is the chance that they both drop by 5% on the same day?
