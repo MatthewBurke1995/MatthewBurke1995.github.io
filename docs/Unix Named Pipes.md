@@ -69,4 +69,4 @@ def read_named_pipe(pipe_name):
 
 
 ## Wrap up
-You can use named pipes as a very simple message queue on any unix distribution.
+You can use named pipes as a simple message queue on any unix distribution.

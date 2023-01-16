@@ -35,7 +35,7 @@ $$
 $$
 
 !!! note
-    in this approximation we can replace x with -x and n with -n and the approximation still holds i.e. for numbers very close to 1 the power operation is similar to multiplication.
+    in this approximation we can replace x with -x and n with -n and the approximation still holds i.e. for numbers close to 1 the power operation is similar to multiplication.
 
 
 ``` py title="correect to the 5th decimal place"

@@ -8,7 +8,7 @@ Copulas are a way of estimating the multivariate distribution of independently m
     Gaussian copulas were used widely in risk modelling during the GFC, the joint probability estimates will only be as good as your marginal probability modelling and appropriateness of the copula.
 
 
-Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 dollars in MSFT stock. What is the chance that they both drop by 5% on the same day?
+Going through an example might be useful. Imagine we have $1000 in AAPL stock and $1000 in MSFT stock. What is the chance that they both drop by 5% on the same day?
 
 We could approach this question using a multivariate bayesian approach, model a hidden factor that affects both the prices of MSFT and AAPL, estimate the most likely parameters, sample from the posterior and record the proportion of times that we see a greater than 5% drop in each of the share prices. That can be a lot of work especially if we have already independently modelled the underlying assets.
 
@@ -80,7 +80,7 @@ def aapl_return_probability(returns:float) -> float:
 
 ## Pick a copula to calculate the joint distribution
 
-We now have our undelying marginal distributions for each set of assets. Now we have to somehow combine them to form a joint distribution. The easiest way would be to assume that they are independent of each other. We could write an independent copula like this:
+We now have our underlying marginal distributions for each set of assets. Now we have to somehow combine them to form a joint distribution. The easiest way would be to assume that they are independent of each other. We could write an independent copula like this:
 
 ``` py
 def independent_copula(u, v):
@@ -96,7 +96,7 @@ def correlated_copula(u,v):
     return max(u,v)
 ```
 !!! note
-    When we read this function for the inputs correlated_copula(0.8,0.3) we should say "What is the chance of at least the 80th percentile of returns and at least the 30th percentile of returns?" If they are completely correlated then when one distribution returns the 80th percentile then the other distribution must also return at least the 80th percentile, therefore: 
+    When we read this function for the inputs correlated_copula(0.8,0.3) we should say "What is the chance of at least the 80th percentile of returns and at least the 30th percentile of returns?" If they are completely correlated then when one distribution returns the 80th percentile then the other distribution must also return at least the 80th percentile.
     ``` py 
         correlated_copula(0.8,0.3) == correlated_copula(0.8,0.8) 
     ```
@@ -113,7 +113,7 @@ def inversely_correlated_copula(u,v):
 
 Accordingly if AAPL were truly uncorrelated with MSFT then there would be no days in which they both lose money and the joint probability of a 5% loss on both assets would be 0.
 
-An alternative copula that we can use is the gumbel copula which takes into account the correlation of the underlying marginal distributions. You can see the code below.
+An alternative copula that we can use is the Gumbel copula which takes into account the correlation of the underlying marginal distributions. You can see the code below.
 
 ``` py
 import numpy as np
@@ -125,9 +125,9 @@ def gumbel_copula(u, v, alpha):
     return copula
 ```
 
-In the case of the gumbel copula, when alpha is equal to one then the copula behaves the same as the independent copula. When alpha approaches infinity it behaves like the inversely correlated copula. So you can guess that alpha is related to the correlation of the series u and v.
+For the Gumbel copula, when alpha is equal to one then the copula behaves the same as the independent copula. When alpha approaches infinity it behaves like the inversely correlated copula. So you can guess that alpha is related to the correlation of the series u and v.
 
-To calculate alpha we first calculate the kendall tau value of the two series. Kendall's tau can be described as a type of rank correlation coefficient. When making the calculation we use the probability values and not the values of the underlying returns i.e.
+To calculate alpha we first calculate the Kendall tau value of the two series. Kendall's tau can be described as a type of rank correlation coefficient. When making the calculation we use the probability values and not the values of the underlying returns i.e.
 
 ``` py
 from scipy.stats import kendalltau
@@ -159,7 +159,7 @@ print(gumbel_copula(aapl_return_probability(-0.05),msft_return_probability(-0.05
 ```
 
 
-Even with our very poor modeling of the marginal distributions the gumbel copula is able to give us a much better estimation of the probability that both companies would drop 5% in a single day. Looking at the history over the last 5 years there have been 7 out of 1258 trading days in which both companies dropped 5% (0.0056 by proportion).
+Even with our poor modeling of the marginal distributions the Gumbel copula is able to give us a much better estimation of the probability that both companies would drop 5% in a single day. Looking at the history over the last 5 years there have been 7 out of 1258 trading days in which both companies dropped 5% (0.0056 by proportion).
 
 
 ## Graphing the result
@@ -190,13 +190,13 @@ Even with our very poor modeling of the marginal distributions the gumbel copula
     ```
     ![Gumbel Copula](/images/gumbel_copula.png){align=right }
 
-If you look at the images closely you can see the graph is steeper for the gumbel copula, which means the joint probability is higher for two unlikely but correlated events.
+The graph is steeper for the Gumbel copula, which means the joint probability is higher for two unlikely but correlated events.
 
 
 
 ## Wrap up
 
-Copula's are used in risk management for their flexibility in combining a wide range of probability models into a joint probability. Even with a very simple marginal probability model the combined copula was reasonably accurate in estimating the joint distribution for correlated assets. You could use copulas for predicting the network load on two related software services or for calculating the risk of correlated assets that are modelled differently.
+Copula's are used in risk management for their flexibility in combining a wide range of probability models into a joint probability. Even with a simple marginal probability model the combined copula was reasonably accurate in estimating the joint distribution for correlated assets. You could use copulas for predicting the network load on two related software services or for calculating the risk of correlated assets that are modelled differently.
 
 Below I have included a chart comparing the probability estimates for the Gumbel and Independent copulas for when `#!python u=v`. Once again the Gumbel copula estimates a higher probability of two correlated but low probability events.
 
@@ -251,7 +251,6 @@ option = {
   ]
 };
 
-  // Display the chart using the configuration items and data just specified.
   myChart.setOption(option);
 </script>
 

@@ -4,6 +4,8 @@ theme:
   name: material
   logo: assets/logo.svg
   favicon: assets/book.png
+  features:
+    - navigation.footer
 
 plugins:
   - search # necessary for search to work
@@ -31,9 +33,11 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 
-
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/matthewburke1995
+    - icon: fontawesome/brands/github
+      link: https://github.com/MatthewBurke1995
 
 site_url: https://matthewburke1995.github.io
-
-
-
