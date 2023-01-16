@@ -490,7 +490,7 @@
 <h2 id="build-marginal-distributions-for-the-process-you-want-to-model">Build marginal distributions for the process you want to model</h2>
 <p>First let's work out the distributions of each asset independently. We'll be using the normal distribution as that is conceptually the easiest to work through, although the copula approach works for any underlying distributions. Assuming the returns follow a normal distribution (not fat tailed enough, I know) then we will have to estimate the mean and standard deviation from the sample.</p>
 <div class="arithmatex">\[
-  X \sim \mathcal{N}(\mu,\,\sigma^{2})\,.
+  x \sim \mathcal{n}(\mu,\,\sigma^{2})\,.
 \]</div>
 <div class="highlight"><span class="filename">Get the paramters for AAPL and MSFT returns distribution</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">yfinance</span> <span class="k">as</span> <span class="nn">yf</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
