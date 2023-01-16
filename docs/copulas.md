@@ -17,7 +17,7 @@ We could approach this question using a multivariate bayesian approach, model a 
 First let's work out the distributions of each asset independently. We'll be using the normal distribution as that is conceptually the easiest to work through, although the copula approach works for any underlying distributions. Assuming the returns follow a normal distribution (not fat tailed enough, I know) then we will have to estimate the mean and standard deviation from the sample.
 
 \[
-  X \sim \mathcal{N}(\mu,\,\sigma^{2})\,.
+  x \sim \mathcal{n}(\mu,\,\sigma^{2})\,.
 \] 
 
 
