@@ -15,7 +15,7 @@
     
     
       
-        <title>Gradio - Matt's thoughts on things</title>
+        <title>GradIO - Matt's thoughts on things</title>
       
     
     
@@ -48,7 +48,7 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Gradio - Matt's thoughts on things" >
+        <meta  property="og:title"  content="GradIO - Matt's thoughts on things" >
       
         <meta  property="og:description"  content="None" >
       
@@ -64,7 +64,7 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Gradio - Matt's thoughts on things" >
+        <meta  name="twitter:title"  content="GradIO - Matt's thoughts on things" >
       
         <meta  name="twitter:description"  content="None" >
       
@@ -88,11 +88,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#gradio" class="md-skip">
-          Skip to content
-        </a>
       
     </div>
     <div data-md-component="announce">
@@ -122,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Gradio
+              GradIO
             
           </span>
         </div>
@@ -243,13 +238,26 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Gradio
+        GradIO
       </a>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../The%20Friendship%20Paradox/" class="md-nav__link">
+        The Friendship Paradox
+      </a>
     </li>
   
 
@@ -346,8 +354,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -362,12 +368,14 @@
                   
 
 
-<h1 id="gradio">Gradio</h1>
-<p>I've been taking Jeremy Howard's <a href="https://course.fast.ai/Lessons/lesson2.html">"Practical Deep Learning for Coders"</a>. The course is very practical so it's no surprise that it discusses deployment during Lesson Two and in the process introduces the <code>gradio</code> package. </p>
-<p>Gradio makes a particularly good use case for demonstrating deep learning models. The skill sets for starting up a webserver, creating a deep learning model and writing javascript for the presentation layer are very different and having to do them all at once can be frustrating. Gradio takes care of the webserver and frontend part of the sandwich so you can focus on the meatier functionality bits.</p>
-<p>It's a very good use case but there is still the issue of deploying the gradio application to the internet on a machine that can handle deep learning workloads. Thankfully last year Hugging Face added <a href="https://huggingface.co/spaces/launch">"Hugging Face Spaces"</a> to their suite of tools. Each space has a limit of 16GB RAM and 8 CPU cores and hosts a docker container exposed to the internet.</p>
+  <h1>GradIO</h1>
+
+<p>Gradio</p>
+<p>I've been taking Jeremy Howard's <a href="https://course.fast.ai/Lessons/lesson2.html">"Practical Deep Learning for Coders"</a>. The course is practical so it's no surprise that it discusses deployment during Lesson Two and in the process introduces the <code>gradio</code> package. </p>
+<p>Gradio makes a good use case for demonstrating deep learning models. The skill sets for starting up a webserver, creating a deep learning model and writing javascript for the presentation layer are different and having to do them all at once can be frustrating. Gradio takes care of the webserver and frontend part of the sandwich so you can focus on the meatier functionality bits.</p>
+<p>It's a good use case but there is still the issue of deploying the gradio application to the internet on a machine that can handle deep learning workloads. Thankfully last year Hugging Face added <a href="https://huggingface.co/spaces/launch">"Hugging Face Spaces"</a> to their suite of tools. Each space has a limit of 16GB RAM and 8 CPU cores and hosts a docker container exposed to the internet.</p>
 <p>Last year I published a Korean language sentiment analysis pipeline to Hugging Faces, so I'll be using that as the basis for the gradio deployment.</p>
-<p>You can find the language model <a href="https://huggingface.co/matthewburke/korean_sentiment">here</a>. And the repository for the gradio application <a href="https://huggingface.co/spaces/matthewburke/KoreanSentiment">here</a>. Since it is hosted on a site which allows CORS I can call to it from this frontend without any issues. One last thing about the model is that it was trained on movie review data, if you give it the phrase "눈물 났다" ("I shed a tear") it will predict it as having a positive sentiment with a &gt;95% confidence rating.</p>
+<p>You can find the language model <a href="https://huggingface.co/matthewburke/korean_sentiment">here</a>. And the repository for the gradio application <a href="https://huggingface.co/spaces/matthewburke/KoreanSentiment">here</a>. Since it's hosted on a site which allows CORS I can call to it from this frontend without any issues. One last thing about the model is that it's trained on movie review data, if you give it the phrase "눈물 났다" ("I shed a tear") it will predict it as having a positive sentiment with a &gt;95% confidence rating.</p>
 <p><input placeholder="종았다" id="sentence" type="text">
 <input class="md-button" type="submit" id="submitbutton"></p>
 <div id="results"></div>
@@ -401,7 +409,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 29, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 16, 2023</span>
       
     
   </small>
@@ -442,13 +450,13 @@
       
       
         
-        <a href="../Unix%20Named%20Pipes/" class="md-footer__link md-footer__link--next" aria-label="Next: Unix Named Pipes" rel="next">
+        <a href="../The%20Friendship%20Paradox/" class="md-footer__link md-footer__link--next" aria-label="Next: The Friendship Paradox" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Unix Named Pipes
+              The Friendship Paradox
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -470,6 +478,28 @@
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/matthewburke1995" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/MatthewBurke1995" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -479,7 +509,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
