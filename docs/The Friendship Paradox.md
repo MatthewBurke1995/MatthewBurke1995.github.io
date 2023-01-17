@@ -39,6 +39,6 @@ $$
 
 ## What should you measure?
 
-Which metric is more useful depends on the circumstances. If you are a busdriver then you will be assigned randomly to take on a bus route in which case the best estimate for the number of passengers at any one time is $ <k> $ but if you are a passenger then you are more likely to catch the bus during peek times for the same reason as everyone else, in which case the per degree average is a better estimate of how busy the bus will be. 
+Which metric is more useful depends on the circumstances. If you are a busdriver then you will be assigned randomly to take on a bus route in which case the best estimate for the number of passengers at any one time is $<k>$ but if you are a passenger then you are more likely to catch the bus during peek times for the same reason as everyone else, in which case the per degree average is a better estimate of how busy the bus will be. 
 
 The same metaphor can works teachers and students in classrooms. And when we don't have a bipartite graph we end up with the friendship paradox.
