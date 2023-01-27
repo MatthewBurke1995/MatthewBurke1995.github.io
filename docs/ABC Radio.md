@@ -58,6 +58,4 @@ def get_youtube_url(song_name: str, apikey: str) -> str:
 
 Here's a song that was the most popular from the time period I was looking at in early 2022.
 
-<iframe width="420" height="345" src="https://www.youtube.com/watch?v=OrQe6r05O_o">
-</iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OrQe6r05O_o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
