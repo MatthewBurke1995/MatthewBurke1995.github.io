@@ -8,6 +8,7 @@ TripleJ tends to have a good mix of quality and breadth in its music selection a
 
 Let's calculate which song and which artist had the most airtime throughout 2022. 
 
+## Usage
 
 ``` sh title="install abc-radio-wrapper pypi package"
 pip install abc-radio-wrapper
@@ -40,6 +41,23 @@ print(
 )
 ```
 
-From here if you were to pick a particular time interval you could imagine integrating with the youtube or spotify API to create a playlist for a certain time period.
+From here if you were to pick a particular time interval you could imagine integrating with the youtube or spotify API to create a playlist for a certain day or month. I think a similar method is already used to compile the hottest 100 playlists after each January.
 
+You could also challenge my assumption that TripleJ has a wide variety of music. One method would be to calculate the Gini Impurity of the song catalouge where each artist is it's own category. You'd need to compare the results with other radio stations or other periods of time. 
+
+
+```py title="generate a youtube video from a song title"
+import requests
+import urllib.parse
+
+def get_youtube_url(song_name: str, apikey: str) -> str:
+    r= requests.get("https://youtube.googleapis.com/youtube/v3/search?q="+urllib.parse.quote_plus(song_name)+"&key="+apikey)
+    video_id = r.json()['items'][0]['id']['videoId']
+    return "https://www.youtube.com/watch?v="+video_id
+```
+
+Here's a song that was the most popular from the time period I was looking at in early 2022.
+
+<iframe width="420" height="345" src="https://www.youtube.com/watch?v=OrQe6r05O_o">
+</iframe>
 
