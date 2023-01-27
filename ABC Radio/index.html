@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://matthewburke1995.github.io/geometric%20distribution/">
+        <link rel="canonical" href="https://matthewburke1995.github.io/ABC%20Radio/">
       
       <link rel="icon" href="../assets/book.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Geometric Distribution - Matt's thoughts on things</title>
+        <title>ABC Radio - Matt's thoughts on things</title>
       
     
     
@@ -48,11 +48,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Geometric Distribution - Matt's thoughts on things" >
+        <meta  property="og:title"  content="ABC Radio - Matt's thoughts on things" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/geometric distribution.png" >
+        <meta  property="og:image"  content="https://matthewburke1995.github.io/assets/images/social/ABC Radio.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -60,15 +60,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://matthewburke1995.github.io/geometric%20distribution/" >
+        <meta  property="og:url"  content="https://matthewburke1995.github.io/ABC%20Radio/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Geometric Distribution - Matt's thoughts on things" >
+        <meta  name="twitter:title"  content="ABC Radio - Matt's thoughts on things" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/geometric distribution.png" >
+        <meta  name="twitter:image"  content="https://matthewburke1995.github.io/assets/images/social/ABC Radio.png" >
       
     
     
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#geometric-distribution" class="md-skip">
+        <a href="#abc-radio" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Geometric Distribution
+              ABC Radio
             
           </span>
         </div>
@@ -220,11 +220,52 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ABC%20Radio/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ABC Radio
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         ABC Radio
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -310,21 +351,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../geometric%20distribution/" class="md-nav__link">
         Geometric Distribution
       </a>
-      
     </li>
   
 
@@ -379,6 +410,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -392,58 +438,59 @@
                   
 
 
-<h1 id="geometric-distribution">Geometric Distribution</h1>
-<div class="admonition quote">
-<p class="admonition-title">interview question</p>
-<p>If a job candidate has a 1% chance of passing an interview, what is the chance that he receives a job offer after 100 interviews?</p>
-</div>
-<p>The first iteration I saw of this question required solving the problem without a calculator. The exact solution is easy with a bit of probability theory. The approximation requires a bit of intuition, and a much longer explanation.</p>
-<p>The probability that they succeed on the Nth interview is the probability of succeeding during an inteview after failing (n-1) interviews i.e.the pmf is</p>
-<div class="arithmatex">\[
-f(n) = p*(1-p)^{n-1}
-\]</div>
-<p>And the chance that they would have succeeded on at least 1 of the N interviews is the inverse of them failing every interview i.e. the cdf is</p>
-<div class="arithmatex">\[
-f(N \le n) = 1 - (1-p)^n
-\]</div>
-<p>If we plug in our values for p=0.01 and n = 100 With a calculator the answer to two decimal places is 0.63.</p>
-<p>Given that p =1/n in the question my first thought was to find a general solution for all values where p is the inverse of n, i.e. p * n =1. Intuitively whether n is 100 or 1000 the answer should be approximately the same since the expected amount of interview successes is the same (p * n).</p>
-<p>The mathematical definition of e is close to what we want but we have the wrong sign in the brackets.</p>
-<div class="arithmatex">\[
-e = \lim_{n \to \infty} (1+1/n)^n
-\]</div>
-<p>Let's introduce an approximation:</p>
-<div class="arithmatex">\[
-\lim_{x \to \infty} (1 + 1/x)^n = (1 + n/x)
-\]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>in this approximation we can replace x with -x and n with -n and the approximation still holds i.e. for numbers close to 1 the power operation is similar to multiplication.</p>
-</div>
-<div class="highlight"><span class="filename">correect to the 5th decimal place</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="mf">1.001</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.004</span> <span class="o">&lt;</span> <span class="mf">0.00001</span>
+<h1 id="abc-radio">ABC Radio</h1>
+<p>I wrote a <a href="https://abc-radio-wrapper.readthedocs.io/en/latest/index.html">python library</a> for searching and parsing through the historical catalgoue of songs played on ABC (Australian Broadcasting Corporation) radio channels. This is especially timely since TripleJ will be releasing it's "Hottest 100" playlist for 2022 in a few days. </p>
+<p>I'll make a post later about some of the things I learned along the way but this post will mostly be about using the library and seeing what information we can extract from the data source.</p>
+<p>TripleJ tends to have a good mix of quality and breadth in its music selection and is arguably the reason that the Australian music industry as a whole has punched above its weight for so long. Which is why i'll be looking at the TripleJ data in particular.</p>
+<p>Let's calculate which song and which artist had the most airtime throughout 2022. </p>
+<h2 id="usage">Usage</h2>
+<div class="highlight"><span class="filename">install abc-radio-wrapper pypi package</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip install abc-radio-wrapper
 </code></pre></div>
-<p>let's use this to get the negative version of the definition of e. Taking n to the limit of infinity:</p>
-<div class="arithmatex">\[ (1-1/n)^n = (1+1/n)^{-n} = 1/e \]</div>
-<p>Each time we swap a sign we are taking the reciprocal. If we take the reciprocal twice we get the original (applying any inverse function twice is the identity function).</p>
-<div class="arithmatex">\[ e = \lim_{n \to \infty} (1-1/n)^{-n} \]</div>
-<div class="arithmatex">\[ 1/e = \lim_{n \to \infty} (1-1/n)^{n} \]</div>
-<p>with this second limit we are getting very close to the geometric distributions CDF, let's swap out the expression. for p * n =1</p>
-<div class="arithmatex">\[ CDF = 1 - (1-p)^n = 1 - 1/e \]</div>
-<div class="highlight"><span class="filename">e approximation vs calculator</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">e</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">calculated</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">0.01</span><span class="p">)</span><span class="o">**</span><span class="mi">100</span> <span class="c1">#apprxomiately 0.63</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">estimated</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">e</span>             <span class="c1">#approximately 0.63</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">calculated</span> <span class="o">-</span> <span class="n">estimated</span><span class="p">)</span>  <span class="o">&lt;</span> <span class="mf">0.01</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">abc_radio_wrapper</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">ABC</span> <span class="o">=</span> <span class="n">abc_radio_wrapper</span><span class="o">.</span><span class="n">ABCRadio</span><span class="p">()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">startDate</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="s2">&quot;2022-01-01T00:00:00+00:00&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">endDate</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="s2">&quot;2022-12-31T23:59:59+00:00&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">radio_play_list</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">#search through 1 year period of triplej songs, set limit to 100 for faster results (default is 10)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">for</span> <span class="n">search_result</span> <span class="ow">in</span> <span class="n">ABC</span><span class="o">.</span><span class="n">continuous_search</span><span class="p">(</span><span class="n">from_</span><span class="o">=</span><span class="n">startDate</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">endDate</span><span class="p">,</span> <span class="n">station</span><span class="o">=</span><span class="s2">&quot;triplej&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">search_result</span><span class="o">.</span><span class="n">offset</span><span class="o">/</span><span class="n">search_result</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">for</span> <span class="n">radio_play</span> <span class="ow">in</span> <span class="n">search_result</span><span class="o">.</span><span class="n">radio_songs</span><span class="p">:</span>        
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="n">artist</span> <span class="o">=</span> <span class="p">[</span><span class="n">artist</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">radio_play</span><span class="o">.</span><span class="n">song</span><span class="o">.</span><span class="n">artists</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">artists</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="k">continue</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="n">radio_play_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;song&quot;</span><span class="p">:</span><span class="n">radio_play</span><span class="o">.</span><span class="n">song</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span><span class="n">radio_play</span><span class="o">.</span><span class="n">played_time</span><span class="p">,</span> <span class="s2">&quot;artist&quot;</span><span class="p">:</span><span class="n">artist</span><span class="p">})</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">radio_play_list</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1">#get the top 20 artists by playtime</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nb">print</span><span class="p">(</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;artist&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="p">)</span>
 </code></pre></div>
-<p>This approximation holds roughly to the number of decimal places of p.</p>
-<p>The expression is particularly nice when we assume n*p =1, but even without the assumption, we could still receive an answer in terms of e:</p>
-<div class="arithmatex">\[ CDF = 1 - 1/(e^{p*n}) \]</div>
+<p>From here if you were to pick a particular time interval you could imagine integrating with the youtube or spotify API to create a playlist for a certain day or month. I think a similar method is already used to compile the hottest 100 playlists after each January.</p>
+<p>You could also challenge my assumption that TripleJ has a wide variety of music. One method would be to calculate the Gini Impurity of the song catalouge where each artist is it's own category. You'd need to compare the results with other radio stations or other periods of time. </p>
+<div class="highlight"><span class="filename">generate a youtube video from a song title</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">requests</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span> <span class="nn">urllib.parse</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span> <span class="nf">get_youtube_url</span><span class="p">(</span><span class="n">song_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">apikey</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">r</span><span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://youtube.googleapis.com/youtube/v3/search?q=&quot;</span><span class="o">+</span><span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">quote_plus</span><span class="p">(</span><span class="n">song_name</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;&amp;key=&quot;</span><span class="o">+</span><span class="n">apikey</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">video_id</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;items&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="s1">&#39;videoId&#39;</span><span class="p">]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">return</span> <span class="s2">&quot;https://www.youtube.com/watch?v=&quot;</span><span class="o">+</span><span class="n">video_id</span>
+</code></pre></div>
+<p>Here's a song that was the most popular from the time period I was looking at in early 2022.</p>
+<iframe width="420" height="345" src="https://www.youtube.com/watch?v=OrQe6r05O_o">
+</iframe>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 16, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 27, 2023</span>
       
     
   </small>
@@ -468,7 +515,7 @@ e = \lim_{n \to \infty} (1+1/n)^n
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../copulas/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Copulas" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Matt&#39;s thoughts on things" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -477,20 +524,20 @@ e = \lim_{n \to \infty} (1+1/n)^n
               <span class="md-footer__direction">
                 Previous
               </span>
-              Copulas
+              Matt's thoughts on things
             </div>
           </div>
         </a>
       
       
         
-        <a href="../meritocracy/" class="md-footer__link md-footer__link--next" aria-label="Next: Meritocracy" rel="next">
+        <a href="../Golden%20Rule%20Of%20Time/" class="md-footer__link md-footer__link--next" aria-label="Next: The Golden Rule of Time" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Meritocracy
+              The Golden Rule of Time
             </div>
           </div>
           <div class="md-footer__button md-icon">
