@@ -2,7 +2,7 @@
 
 I've been reading "Punished by Rewards" by Alfie Kohn, which is a book about the limits of behaviourism and incentive systems that assume behaviourism as the one and only paradigm of explanining human behaviour. There was a point in the mid 1900's where the field of psychology was captured by behaviourism and the fact that it remains the predominant way of explanining human behaviour amongst the suits is unfortunate. Below I've written my thoughts on the topic as I read through the book.
 ``
-## Current reward systmes are not meritocratic
+## Current reward systems are not meritocratic
 
 Modern incentive systems are unreasonably top weighted. One of the strangest aspects of modern publically traded companies is executive pay. Why should the highest paid employee's (I'm including CEO's as employees since their work agreements are dictated by the board) be the most highly incentivized to do the work? Is there not am implication that they could not be trusted to work effectively without these incentives? What can be most puzzling is how these incentives are aligned with results. If the share price goes up then investors will be happy, but how much of this happiness should be attributed to the CEO is debatable. What's more if this type of incentive system was so effective then eventually companies that didn't partake in these incentive systems would soon be outcompeted. Since we live in a world where there are many companies that treat their employees well and don't resort to explicit KPI's then this is not the case.
 
