@@ -11,6 +11,9 @@ plugins:
   - search # necessary for search to work
   - git-revision-date-localized
   - social
+  - blog:
+      post_date_format: full
+
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -40,4 +43,9 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/MatthewBurke1995
 
-site_url: https://matthewburke1995.github.io
+site_url: https://matthewburke.xyz
+
+nav:
+  - Blog:
+    - blog/index.md 
+
