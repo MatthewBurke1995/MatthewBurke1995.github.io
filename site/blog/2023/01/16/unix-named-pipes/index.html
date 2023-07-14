@@ -259,7 +259,7 @@
         
   
   <span class="md-ellipsis">
-    Matt's thoughts on things
+    Blog
   </span>
   
 
@@ -734,6 +734,8 @@
 <h1 id="unix-named-pipes">Unix Named Pipes</h1>
 <h2 id="message-queues">Message Queues</h2>
 <p>Message queues are an architectural pattern to decouple the process of gathering tasks and resolving tasks. There are a couple of reasons why you would use this design pattern. It might not be possible to complete the task within a single request reply loop or it might be easier to resolve tasks in a batch method due to large initial process startup costs.</p>
+<!-- more -->
+
 <p>Assuming that the process that resolves the work is different to the one that gathers the work (i.e. is a message queue and not a task queue) then this is also a form of interprocess communication. Other options for interprocess communication could be JSON over HTTP (for processes across servers), shared memory such as Redis or the filesystem for processes that run on the same server.</p>
 <h2 id="unix-pipes">Unix Pipes</h2>
 <p>In unix everything is a file, including pipes. As a brief review pipes are a way of turning stdin (read as "standard input") to stdout ("standard output"). The following script uses <code>cat</code> which takes a file or several files from stdin and prints to stdout. The pipe in the middle takes that stdout and converts it to stdin for the next process which is also cat and prints the text to stdout. 'cat' converts stdin to stdout and the pipe converts stdout to stdin, together they act like the identity function for any text. The following two commands do the same thing.</p>

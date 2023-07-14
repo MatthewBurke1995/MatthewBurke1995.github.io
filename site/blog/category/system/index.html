@@ -255,7 +255,7 @@
         
   
   <span class="md-ellipsis">
-    Matt's thoughts on things
+    Blog
   </span>
   
 
@@ -671,50 +671,6 @@
     <h2 id="unix-named-pipes"><a class="toclink" href="../../2023/01/16/unix-named-pipes/">Unix Named Pipes</a></h2>
 <h3 id="message-queues"><a class="toclink" href="../../2023/01/16/unix-named-pipes/#message-queues">Message Queues</a></h3>
 <p>Message queues are an architectural pattern to decouple the process of gathering tasks and resolving tasks. There are a couple of reasons why you would use this design pattern. It might not be possible to complete the task within a single request reply loop or it might be easier to resolve tasks in a batch method due to large initial process startup costs.</p>
-<p>Assuming that the process that resolves the work is different to the one that gathers the work (i.e. is a message queue and not a task queue) then this is also a form of interprocess communication. Other options for interprocess communication could be JSON over HTTP (for processes across servers), shared memory such as Redis or the filesystem for processes that run on the same server.</p>
-<h3 id="unix-pipes"><a class="toclink" href="../../2023/01/16/unix-named-pipes/#unix-pipes">Unix Pipes</a></h3>
-<p>In unix everything is a file, including pipes. As a brief review pipes are a way of turning stdin (read as "standard input") to stdout ("standard output"). The following script uses <code>cat</code> which takes a file or several files from stdin and prints to stdout. The pipe in the middle takes that stdout and converts it to stdin for the next process which is also cat and prints the text to stdout. 'cat' converts stdin to stdout and the pipe converts stdout to stdin, together they act like the identity function for any text. The following two commands do the same thing.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="../../2023/01/16/unix-named-pipes/#__codelineno-0-1"></a>cat<span class="w"> </span>book.txt<span class="w">        </span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="../../2023/01/16/unix-named-pipes/#__codelineno-0-2"></a>cat<span class="w"> </span>book.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cat<span class="w">  </span>
-</code></pre></div>
-<p>😮‍💨 that was a lot to parse out. Pipes are powerful and efficient when each process can handle the data as a stream. We can compare the time taken to run a pipe of 20 cats versus the time taken to run a pipe of one cat.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="../../2023/01/16/unix-named-pipes/#__codelineno-1-1"></a><span class="nb">time</span><span class="w"> </span>cat<span class="w"> </span>book.txt<span class="w">                       </span><span class="c1">#...  0.007 total</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="../../2023/01/16/unix-named-pipes/#__codelineno-1-2"></a><span class="nb">time</span><span class="w"> </span>cat<span class="w"> </span>book.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cat<span class="w"> </span><span class="p">|</span><span class="w"> </span>🐱x20<span class="w"> </span><span class="p">|</span><span class="w"> </span>cat<span class="w">   </span><span class="c1">#...  0.021 total</span>
-</code></pre></div>
-<p>More processes means more processing but there is a lot of time saved when you dont have to read from the file system each time. We could also create a strange pipe by using cat if we save the stdout to an intermediate file and then read that file as the stdin for the next process, this takes roughly twice the time and also twice the cpu power as the unix pipe version.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="../../2023/01/16/unix-named-pipes/#__codelineno-2-1"></a>cat<span class="w"> </span>book.txt<span class="w"> </span>&gt;<span class="w"> </span>tempfile<span class="p">;</span><span class="w"> </span>cat<span class="w"> </span>tempfile<span class="w"> </span>&gt;<span class="w"> </span>tempfile<span class="w"> </span><span class="p">;</span><span class="w"> </span>cat<span class="w"> </span>tempfile<span class="w"> </span>&gt;<span class="w"> </span>tempfile<span class="p">;</span>...
-</code></pre></div>
-<p>Writing to files is always an option, there is a huge overlap between pipes and files in terms of functionality. But one reason why files aren't appropriate is when we want to make sure that each line is processed exactly once even if several processes are accessing the content.</p>
-<h3 id="unix-named-pipes-as-a-message-queue"><a class="toclink" href="../../2023/01/16/unix-named-pipes/#unix-named-pipes-as-a-message-queue">Unix Named Pipes as a Message Queue</a></h3>
-<p>Unix has a feature called 'Named Pipes' where we can give a pipe a name, let it persist in the file system. Unlike regular pipes named pipes can persist over time, and unlike regular files they have the guarantee that each line will only be processed once.</p>
-<div class="highlight"><span class="filename">named pipes in bash</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="../../2023/01/16/unix-named-pipes/#__codelineno-3-1"></a>mkfifo<span class="w"> </span>newnamedpipe
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="../../2023/01/16/unix-named-pipes/#__codelineno-3-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hi&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>newnamedpipe
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="../../2023/01/16/unix-named-pipes/#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="../../2023/01/16/unix-named-pipes/#__codelineno-3-4"></a><span class="c1">##open up new terminal</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="../../2023/01/16/unix-named-pipes/#__codelineno-3-5"></a>cat<span class="w"> </span>newnamedpipe<span class="w"> </span><span class="c1">#output of &quot;hi&quot;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="../../2023/01/16/unix-named-pipes/#__codelineno-3-6"></a>cat<span class="w"> </span>newnamedpipe<span class="w"> </span><span class="c1">#no output, waiting for new message to join queue.</span>
-</code></pre></div>
-<div class="highlight"><span class="filename">Read and write to named pipes in Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">os</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-2"></a><span class="n">PIPE_NAME</span> <span class="o">=</span> <span class="s2">&quot;my_named_pipe&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-4"></a><span class="k">def</span> <span class="nf">write_named_pipe</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">,</span><span class="n">message</span><span class="p">):</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-5"></a>  <span class="c1"># Create the named pipe if it does not exist</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-6"></a>  <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">):</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-7"></a>    <span class="n">os</span><span class="o">.</span><span class="n">mkfifo</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">)</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-8"></a>  <span class="c1"># Open the named pipe</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-9"></a>  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pipe</span><span class="p">:</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-10"></a>    <span class="c1"># Write the message to the pipe</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-11"></a>    <span class="n">pipe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Hello, other process!&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-12"></a>    <span class="n">pipe</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-13"></a>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-14"></a><span class="k">def</span> <span class="nf">read_named_pipe</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">):</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-15"></a>  <span class="c1"># Open the named pipe for reading</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-16"></a>  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pipe_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pipe</span><span class="p">:</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-17"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="../../2023/01/16/unix-named-pipes/#__codelineno-4-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="wrap-up"><a class="toclink" href="../../2023/01/16/unix-named-pipes/#wrap-up">Wrap up</a></h3>
-<p>You can use named pipes as a simple message queue on any unix distribution.</p>
 
     <nav class="md-post__action">
       <a href="../../2023/01/16/unix-named-pipes/">

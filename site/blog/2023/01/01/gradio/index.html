@@ -259,7 +259,7 @@
         
   
   <span class="md-ellipsis">
-    Matt's thoughts on things
+    Blog
   </span>
   
 
@@ -698,6 +698,8 @@
 
 <h1 id="gradio">Gradio</h1>
 <p>I've been taking Jeremy Howard's <a href="https://course.fast.ai/Lessons/lesson2.html">"Practical Deep Learning for Coders"</a>. The course is practical so it's no surprise that it discusses deployment during Lesson Two and in the process introduces the <code>gradio</code> package. </p>
+<!-- more -->
+
 <p>Gradio makes a good use case for demonstrating deep learning models. The skill sets for starting up a webserver, creating a deep learning model and writing javascript for the presentation layer are different and having to do them all at once can be frustrating. Gradio takes care of the webserver and frontend part of the sandwich so you can focus on the meatier functionality bits.</p>
 <p>It's a good use case but there is still the issue of deploying the gradio application to the internet on a machine that can handle deep learning workloads. Thankfully last year Hugging Face added <a href="https://huggingface.co/spaces/launch">"Hugging Face Spaces"</a> to their suite of tools. Each space has a limit of 16GB RAM and 8 CPU cores and hosts a docker container exposed to the internet.</p>
 <p>Last year I published a Korean language sentiment analysis pipeline to Hugging Faces, so I'll be using that as the basis for the gradio deployment.</p>

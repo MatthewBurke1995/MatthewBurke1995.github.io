@@ -20,7 +20,7 @@
     
     
       
-        <title>Matt's thoughts on things - Matt's thoughts on things</title>
+        <title>Blog - Matt's thoughts on things</title>
       
     
     
@@ -51,7 +51,7 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Matt's thoughts on things - Matt's thoughts on things" >
+        <meta  property="og:title"  content="Blog - Matt's thoughts on things" >
       
         <meta  property="og:description"  content="None" >
       
@@ -67,7 +67,7 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Matt's thoughts on things - Matt's thoughts on things" >
+        <meta  name="twitter:title"  content="Blog - Matt's thoughts on things" >
       
         <meta  name="twitter:description"  content="None" >
       
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#matts-thoughts-on-things" class="md-skip">
+        <a href="#blog" class="md-skip">
           Skip to content
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Matt's thoughts on things
+              Blog
             
           </span>
         </div>
@@ -255,7 +255,7 @@
         
   
   <span class="md-ellipsis">
-    Matt's thoughts on things
+    Blog
   </span>
   
 
@@ -626,88 +626,8 @@
   <div class="md-content" data-md-component="content">
     <div class="md-content__inner">
       <header class="md-typeset">
-        <h1 id="matts-thoughts-on-things"><a class="toclink" href="#matts-thoughts-on-things">Matt's thoughts on things</a></h1>
+        <h1 id="blog"><a class="toclink" href="#blog">Blog</a></h1>
       </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-01-16 00:00:00">Monday, January 16, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="../../category/math/" class="md-meta__link">Math</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              3 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="geometric-distribution"><a class="toclink" href="../../2023/01/16/geometric-distribution/">Geometric Distribution</a></h2>
-<div class="admonition quote">
-<p class="admonition-title">interview question</p>
-<p>If a job candidate has a 1% chance of passing an interview, what is the chance that he receives a job offer after 100 interviews?</p>
-</div>
-<p>The first iteration I saw of this question required solving the problem without a calculator. The exact solution is easy with a bit of probability theory. The approximation requires a bit of intuition, and a much longer explanation.</p>
-<p>The probability that they succeed on the Nth interview is the probability of succeeding during an inteview after failing (n-1) interviews i.e.the pmf is</p>
-<div class="arithmatex">\[
-f(n) = p*(1-p)^{n-1}
-\]</div>
-<p>And the chance that they would have succeeded on at least 1 of the N interviews is the inverse of them failing every interview i.e. the cdf is</p>
-<div class="arithmatex">\[
-f(N \le n) = 1 - (1-p)^n
-\]</div>
-<p>If we plug in our values for p=0.01 and n = 100 With a calculator the answer to two decimal places is 0.63.</p>
-<p>Given that p =1/n in the question my first thought was to find a general solution for all values where p is the inverse of n, i.e. p * n =1. Intuitively whether n is 100 or 1000 the answer should be approximately the same since the expected amount of interview successes is the same (p * n).</p>
-<p>The mathematical definition of e is close to what we want but we have the wrong sign in the brackets.</p>
-<div class="arithmatex">\[
-e = \lim_{n \to \infty} (1+1/n)^n
-\]</div>
-<p>Let's introduce an approximation:</p>
-<div class="arithmatex">\[
-\lim_{x \to \infty} (1 + 1/x)^n = (1 + n/x)
-\]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>in this approximation we can replace x with -x and n with -n and the approximation still holds i.e. for numbers close to 1 the power operation is similar to multiplication.</p>
-</div>
-<div class="highlight"><span class="filename">correect to the 5th decimal place</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="../../2023/01/16/geometric-distribution/#__codelineno-0-1"></a><span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="mf">1.001</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.004</span> <span class="o">&lt;</span> <span class="mf">0.00001</span>
-</code></pre></div>
-<p>let's use this to get the negative version of the definition of e. Taking n to the limit of infinity:</p>
-<div class="arithmatex">\[ (1-1/n)^n = (1+1/n)^{-n} = 1/e \]</div>
-<p>Each time we swap a sign we are taking the reciprocal. If we take the reciprocal twice we get the original (applying any inverse function twice is the identity function).</p>
-<div class="arithmatex">\[ e = \lim_{n \to \infty} (1-1/n)^{-n} \]</div>
-<div class="arithmatex">\[ 1/e = \lim_{n \to \infty} (1-1/n)^{n} \]</div>
-<p>with this second limit we are getting very close to the geometric distributions CDF, let's swap out the expression. for p * n =1</p>
-<div class="arithmatex">\[ CDF = 1 - (1-p)^n = 1 - 1/e \]</div>
-<div class="highlight"><span class="filename">e approximation vs calculator</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="../../2023/01/16/geometric-distribution/#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">e</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="../../2023/01/16/geometric-distribution/#__codelineno-1-2"></a><span class="n">calculated</span> <span class="o">=</span>  <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">0.01</span><span class="p">)</span><span class="o">**</span><span class="mi">100</span> <span class="c1">#apprxomiately 0.63</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="../../2023/01/16/geometric-distribution/#__codelineno-1-3"></a><span class="n">estimated</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">e</span>             <span class="c1">#approximately 0.63</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="../../2023/01/16/geometric-distribution/#__codelineno-1-4"></a><span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">calculated</span> <span class="o">-</span> <span class="n">estimated</span><span class="p">)</span>  <span class="o">&lt;</span> <span class="mf">0.01</span>
-</code></pre></div>
-<p>This approximation holds roughly to the number of decimal places of p.</p>
-<p>The expression is particularly nice when we assume n*p =1, but even without the assumption, we could still receive an answer in terms of e:</p>
-<div class="arithmatex">\[ CDF = 1 - 1/(e^{p*n}) \]</div>
-
-    <nav class="md-post__action">
-      <a href="../../2023/01/16/geometric-distribution/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
@@ -739,38 +659,6 @@ e = \lim_{n \to \infty} (1+1/n)^n
   <div class="md-post__content md-typeset">
     <h2 id="gradio"><a class="toclink" href="../../2023/01/01/gradio/">Gradio</a></h2>
 <p>I've been taking Jeremy Howard's <a href="https://course.fast.ai/Lessons/lesson2.html">"Practical Deep Learning for Coders"</a>. The course is practical so it's no surprise that it discusses deployment during Lesson Two and in the process introduces the <code>gradio</code> package. </p>
-<p>Gradio makes a good use case for demonstrating deep learning models. The skill sets for starting up a webserver, creating a deep learning model and writing javascript for the presentation layer are different and having to do them all at once can be frustrating. Gradio takes care of the webserver and frontend part of the sandwich so you can focus on the meatier functionality bits.</p>
-<p>It's a good use case but there is still the issue of deploying the gradio application to the internet on a machine that can handle deep learning workloads. Thankfully last year Hugging Face added <a href="https://huggingface.co/spaces/launch">"Hugging Face Spaces"</a> to their suite of tools. Each space has a limit of 16GB RAM and 8 CPU cores and hosts a docker container exposed to the internet.</p>
-<p>Last year I published a Korean language sentiment analysis pipeline to Hugging Faces, so I'll be using that as the basis for the gradio deployment.</p>
-<p>You can find the language model <a href="https://huggingface.co/matthewburke/korean_sentiment">here</a>. And the repository for the gradio application <a href="https://huggingface.co/spaces/matthewburke/KoreanSentiment">here</a>. Since it's hosted on a site which allows CORS I can call to it from this frontend without any issues. One last thing about the model is that it's trained on movie review data, if you give it the phrase "눈물 났다" ("I shed a tear") it will predict it as having a positive sentiment with a &gt;95% confidence rating.</p>
-<p><input placeholder="종았다" id="sentence" type="text">
-<input class="md-button" type="submit" id="submitbutton"></p>
-<div id="results"></div>
-<script>
-  function updateValue(event) {
-    text = document.getElementById('sentence').value;
-    console.log(text);
-    fetch("https://matthewburke-koreansentiment.hf.space/run/predict", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        data: [
-          text,
-        ]
-      })})
-    .then(r => r.json())
-    .then(
-      r => {
-        var str = JSON.stringify(r.data, null, 2); //
-        results.innerHTML = str;
-      }
-    )
-
-  }
-
-  submitbutton.addEventListener('click', updateValue);
-</script>
-
 
     <nav class="md-post__action">
       <a href="../../2023/01/01/gradio/">
@@ -808,49 +696,6 @@ e = \lim_{n \to \infty} (1+1/n)^n
   <div class="md-post__content md-typeset">
     <h2 id="python-profiling"><a class="toclink" href="../../2022/12/20/python-profiling/">Python Profiling</a></h2>
 <p>I've seen a few posts on Hacker News recently about writing fast and efficient code. Fortunately this example was written in Python which is probably the language that could save the most instruction cycles globally with a bit of optimization. I say this because Python is ubiquitous when it comes to writing prototype scripts that eventually get pushed to production under project deadlines.</p>
-<p>The rule of thumb that I like to use, and remind my coworkers, is that the order of code optimization is:</p>
-<ol>
-<li>Make it work - optimize for business functionality (MVP)</li>
-<li>Make it right - optimize for human readability (documentation, test cases, extendable)</li>
-<li>Make it fast - optimize for execution speed </li>
-</ol>
-<p>In the work of data science, the opportunities to get to the third stage are rare enough that they aren't covered in many learning materials but important enough that you need to know them. In this post i'll cover the profiling basics when using Python.</p>
-<p>Be aware that many profiling results are dependent on the current state of the computer running the profiler, it's best to run each result several times to normalize across background processes that may be happening.</p>
-<h3 id="timeit"><a class="toclink" href="../../2022/12/20/python-profiling/#timeit">%timeit</a></h3>
-<p>For those using Jupyter notebooks or an iPython environment, %timeit is the easiest way to start measuring execution time of functions and therefore being able to compare speeds of different solutions.</p>
-<div class="highlight"><span class="filename">timeit</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="../../2022/12/20/python-profiling/#__codelineno-0-1"></a><span class="o">%</span><span class="n">timeit</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="../../2022/12/20/python-profiling/#__codelineno-0-2"></a><span class="c1">##100000 loops, best of 5: 12.1 µs per loop</span>
-</code></pre></div>
-<h3 id="memit"><a class="toclink" href="../../2022/12/20/python-profiling/#memit">%memit</a></h3>
-<p>memit is the easiest way to start memory profiling in a Jupyter Notebook or iPython environment.
-<div class="highlight"><span class="filename">memit</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="../../2022/12/20/python-profiling/#__codelineno-1-1"></a><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">memory_profiler</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="../../2022/12/20/python-profiling/#__codelineno-1-2"></a><span class="o">%</span><span class="n">load_ext</span> <span class="n">memory_profiler</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="../../2022/12/20/python-profiling/#__codelineno-1-3"></a><span class="o">%</span><span class="n">memit</span> <span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="../../2022/12/20/python-profiling/#__codelineno-1-4"></a><span class="o">%</span><span class="n">memit</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)]</span>
-</code></pre></div></p>
-<h3 id="usrbintime"><a class="toclink" href="../../2022/12/20/python-profiling/#usrbintime">/usr/bin/time</a></h3>
-<p>/usr/bin/time is a unix utility to time the execution of any program. It doesn't have as much detail as the python specific profilers but can be used for all types of programs that run as a unix CLI.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="../../2022/12/20/python-profiling/#__codelineno-2-1"></a>/usr/bin/time<span class="w"> </span>curl<span class="w"> </span>https://matthewburke.xyz<span class="w"> </span>&gt;&gt;<span class="w"> </span>/dev/null<span class="w"> </span>
-</code></pre></div></p>
-<h3 id="cprofile"><a class="toclink" href="../../2022/12/20/python-profiling/#cprofile">cProfile</a></h3>
-<p>cProfile is part of the standard library and will show you the time spent in each function of a certain program.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="../../2022/12/20/python-profiling/#__codelineno-3-1"></a>python<span class="w"> </span>-m<span class="w"> </span>cProfile<span class="w"> </span>-s<span class="w"> </span>cumulative<span class="w"> </span>script.py
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="../../2022/12/20/python-profiling/#__codelineno-3-2"></a>python<span class="w"> </span>-m<span class="w"> </span>cProfile<span class="w"> </span>-s<span class="w"> </span>cumulative<span class="w"> </span>script.py<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>script.py<span class="w"> </span>
-</code></pre></div></p>
-<h3 id="line_profiler"><a class="toclink" href="../../2022/12/20/python-profiling/#line_profiler">line_profiler</a></h3>
-<p>Once you've worked out which function is using up the most CPU resources you can dive in deeper and investigate which line is using the most CPU resources with line_profiler. To run this you'll need to download the pip package line_profiler, add the @profile decorator to the functions you want to profile and finally run the line_profiler from the command line </p>
-<div class="highlight"><span class="filename">function_to_profile.py</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="../../2022/12/20/python-profiling/#__codelineno-4-1"></a><span class="nd">@profile</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="../../2022/12/20/python-profiling/#__codelineno-4-2"></a><span class="k">def</span> <span class="nf">slow_add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="../../2022/12/20/python-profiling/#__codelineno-4-3"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="../../2022/12/20/python-profiling/#__codelineno-4-4"></a>    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="../../2022/12/20/python-profiling/#__codelineno-5-1"></a>kernprof<span class="w"> </span>-l<span class="w"> </span>function_to_profile.py
-</code></pre></div>
-<p>See the <a href="https://github.com/pyutils/line_profiler">github repo</a> github repo for more information.</p>
-<h3 id="memory_profiler"><a class="toclink" href="../../2022/12/20/python-profiling/#memory_profiler">memory_profiler</a></h3>
-<p>The memory_profiler works in much the same way as the line_profiler. Have a look at the <a href="https://github.com/pythonprofilers/memory_profiler">official documentation</a> to get started. </p>
-<h3 id="py-spy"><a class="toclink" href="../../2022/12/20/python-profiling/#py-spy">py-spy</a></h3>
-<p>py-spy (note the hyphen) is an incredible piece of work which allows you to profile a python process as it is running without slowing down the process (too much). You can imagine how useful it would be when trying to determine what the bottleneck is for a web server when serving real traffic. You can find more information on the <a href="https://github.com/benfred/py-spy">github repo</a>.</p>
 
     <nav class="md-post__action">
       <a href="../../2022/12/20/python-profiling/">
