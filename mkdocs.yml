@@ -48,4 +48,6 @@ site_url: https://matthewburke.xyz
 nav:
   - Blog:
     - blog/index.md 
-
+  - Projects:
+    - projects/index.md
+    - projects/posts/wondrous.md
