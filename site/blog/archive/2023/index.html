@@ -419,6 +419,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../../category/bayesian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bayesian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../category/devops/" class="md-nav__link">
         
   
@@ -808,6 +828,45 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2023-08-15 00:00:00">Tuesday, August 15, 2023</time></li>
+        
+          <li class="md-meta__item">
+            in
+            
+              <a href="../../category/math/" class="md-meta__link">Math</a>, 
+              <a href="../../category/python/" class="md-meta__link">Python</a>, 
+              <a href="../../category/bayesian/" class="md-meta__link">Bayesian</a></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              5 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="bayesian-football-predictions"><a class="toclink" href="../../2023/08/15/bayesian-football-predictions/">Bayesian Football Predictions</a></h2>
+<p>With the English Premier League starting up again, I've spent a lot of time thinking about football. Three years ago I wrote a Bayesian model to predict premiear league scorelines (you can still find my notebook on github) using Pymc3. Pymc3 and its computational engine, Theano, have stalled compared to the alternatives so it's time for an rewrite in numpyro and - since we only have one week of matches - a small tweak so that the computations converge quicker.</p>
+
+    <nav class="md-post__action">
+      <a href="../../2023/08/15/bayesian-football-predictions/">
+        Continue reading
+      </a>
+    </nav>
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2023-07-31 00:00:00">Monday, July 31, 2023</time></li>
         
           <li class="md-meta__item">
@@ -833,14 +892,12 @@
 <p>My job title has never been 'DevOps' which is probably a good thing since having a dedicated DevOps team is arguably an antipattern. Throughout my career I've tended to work in smaller teams that are branched out from the core business, in which case I have had to deal with operations as I go.</p>
 <p>Terraform seems to have reached a Docker level of industry awareness, so i've been catching up on the trend. </p>
 <p>As a way of giving myself a target I came across a devops takehome test on reddit. You can see <a href="https://github.com/MatthewBurke1995/Dev-Ops-Take-Home">my solution on github</a>. As for the take home questions:</p>
-<div class="highlight"><pre><span></span><code>Q: What is the rationale behind technology choices?
-A: Github CICD, Docker and Terraform tend to be the common tools for their respective functionality which makes them the easiest to troubleshoot and find related documentation for any problems that occur.
-
-Q: Any improvements you would make with more time?
-A: I&#39;d modularize the terraform code so I could make 1 for 1 replication of dev and prod without copy pasting code. If it needed to be public facing I&#39;d buy a domain name and set up dns using terraform (probably through Route53 or Cloudflare). And then I&#39;d run health check tests against the IP address, if unsuccessful I&#39;d roll things back.
-</code></pre></div>
+<p>Q: What is the rationale behind technology choices?
+A: Github CICD, Docker and Terraform tend to be the common tools for their respective functionality which makes them the easiest to troubleshoot and find related documentation for any problems that occur.</p>
+<p>Q: Any improvements you would make with more time?
+A: I'd modularize the terraform code so I could make 1 for 1 replication of dev and prod without copy pasting code. If it needed to be public facing I'd buy a domain name and set up dns using terraform (probably through Route53 or Cloudflare). And then I'd run health check tests against the IP address, if unsuccessful I'd roll things back.</p>
 <p>The app works, each push to master creates a docker image which would get deployed if I ran the <code>terraform apply</code> command but currently I'm only running <code>terraform plan</code> as the last step of the pipeline. </p>
-<p>Overall terraform is a much nicer experience than procedural coding using the AWS Cli or SDK.</p>
+<p>Overall terraform is a much nicer experience than procedural coding using the AWS CLI or SDK.</p>
 
     <nav class="md-post__action">
       <a href="../../2023/07/31/terraform/">

@@ -14,12 +14,14 @@ Terraform seems to have reached a Docker level of industry awareness, so i've be
 
 As a way of giving myself a target I came across a devops takehome test on reddit. You can see [my solution on github](https://github.com/MatthewBurke1995/Dev-Ops-Take-Home). As for the take home questions:
 
-    Q: What is the rationale behind technology choices?
-    A: Github CICD, Docker and Terraform tend to be the common tools for their respective functionality which makes them the easiest to troubleshoot and find related documentation for any problems that occur.
+Q: What is the rationale behind technology choices?
+A: Github CICD, Docker and Terraform tend to be the common tools for their respective functionality which makes them the easiest to troubleshoot and find related documentation for any problems that occur.
 
-    Q: Any improvements you would make with more time?
-    A: I'd modularize the terraform code so I could make 1 for 1 replication of dev and prod without copy pasting code. If it needed to be public facing I'd buy a domain name and set up dns using terraform (probably through Route53 or Cloudflare). And then I'd run health check tests against the IP address, if unsuccessful I'd roll things back.
+Q: Any improvements you would make with more time?
+A: I'd modularize the terraform code so I could make 1 for 1 replication of dev and prod without copy pasting code. If it needed to be public facing I'd buy a domain name and set up dns using terraform (probably through Route53 or Cloudflare). And then I'd run health check tests against the IP address, if unsuccessful I'd roll things back.
 
 The app works, each push to master creates a docker image which would get deployed if I ran the `terraform apply` command but currently I'm only running `terraform plan` as the last step of the pipeline. 
 
-Overall terraform is a much nicer experience than procedural coding using the AWS Cli or SDK.
+Overall terraform is a much nicer experience than procedural coding using the AWS CLI or SDK.
+
+
