@@ -5,29 +5,28 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://matthewburke.xyz/blog/category/terraform/" rel="canonical"/>
-<link href="../cloud/" rel="prev"/>
-<link href="../math/" rel="next"/>
-<link href="../../../assets/book.png" rel="icon"/>
+<link href="https://matthewburke.xyz/blog/2023/08/27/aws-lambda-project/" rel="canonical"/>
+<link href="../../15/bayesian-football-predictions/" rel="prev"/>
+<link href="../../../../../assets/book.png" rel="icon"/>
 <meta content="mkdocs-1.5.2, mkdocs-material-9.2.4" name="generator"/>
-<title>Terraform - Matt's thoughts on things</title>
-<link href="../../../assets/stylesheets/main.0e669242.min.css" rel="stylesheet"/>
+<title>AWS Lambda Project - Matt's thoughts on things</title>
+<link href="../../../../../assets/stylesheets/main.0e669242.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <meta content="website" property="og:type"/>
-<meta content="Terraform - Matt's thoughts on things" property="og:title"/>
+<meta content="AWS Lambda project - Matt's thoughts on things" property="og:title"/>
 <meta content="None" property="og:description"/>
-<meta content="https://matthewburke.xyz/assets/images/social/blog/category/terraform.png" property="og:image"/>
+<meta content="https://matthewburke.xyz/assets/images/social/blog/posts/AWS Lambda project.png" property="og:image"/>
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
-<meta content="https://matthewburke.xyz/blog/category/terraform/" property="og:url"/>
+<meta content="https://matthewburke.xyz/blog/2023/08/27/aws-lambda-project/" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Terraform - Matt's thoughts on things" name="twitter:title"/>
+<meta content="AWS Lambda project - Matt's thoughts on things" name="twitter:title"/>
 <meta content="None" name="twitter:description"/>
-<meta content="https://matthewburke.xyz/assets/images/social/blog/category/terraform.png" name="twitter:image"/>
+<meta content="https://matthewburke.xyz/assets/images/social/blog/posts/AWS Lambda project.png" name="twitter:image"/>
 </head>
 <body dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -35,7 +34,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#terraform">
+<a class="md-skip" href="#aws-lambda-project">
           Skip to content
         </a>
 </div>
@@ -43,8 +42,8 @@
 </div>
 <header class="md-header md-header--shadow" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Matt's thoughts on things" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Matt's thoughts on things">
-<img alt="logo" src="../../../assets/logo.svg"/>
+<a aria-label="Matt's thoughts on things" class="md-header__button md-logo" data-md-component="logo" href="../../../../.." title="Matt's thoughts on things">
+<img alt="logo" src="../../../../../assets/logo.svg"/>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
@@ -59,7 +58,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Terraform
+              AWS Lambda Project
             
           </span>
 </div>
@@ -100,13 +99,13 @@
 <div class="md-container" data-md-component="container">
 <main class="md-main" data-md-component="main">
 <div class="md-main__inner md-grid">
-<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden="">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Matt's thoughts on things" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Matt's thoughts on things">
-<img alt="logo" src="../../../assets/logo.svg"/>
+<a aria-label="Matt's thoughts on things" class="md-nav__button md-logo" data-md-component="logo" href="../../../../.." title="Matt's thoughts on things">
+<img alt="logo" src="../../../../../assets/logo.svg"/>
 </a>
     Matt's thoughts on things
   </label>
@@ -125,8 +124,8 @@
             Blog
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../">
+<li class="md-nav__item md-nav__item--active">
+<a class="md-nav__link" href="../../../../">
 <span class="md-ellipsis">
     Blog
   </span>
@@ -147,14 +146,14 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../archive/2023/">
+<a class="md-nav__link" href="../../../../archive/2023/">
 <span class="md-ellipsis">
     2023
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../archive/2022/">
+<a class="md-nav__link" href="../../../../archive/2022/">
 <span class="md-ellipsis">
     2022
   </span>
@@ -163,128 +162,127 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
 <span class="md-ellipsis">
     Categories
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_1_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_1_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_1_3">
 <span class="md-nav__icon md-icon"></span>
             Categories
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../python/">
+<a class="md-nav__link" href="../../../../category/python/">
 <span class="md-ellipsis">
     Python
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../cloud/">
+<a class="md-nav__link" href="../../../../category/cloud/">
 <span class="md-ellipsis">
     Cloud
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/terraform/">
 <span class="md-ellipsis">
     Terraform
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../math/">
+<a class="md-nav__link" href="../../../../category/math/">
 <span class="md-ellipsis">
     Math
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../bayesian/">
+<a class="md-nav__link" href="../../../../category/bayesian/">
 <span class="md-ellipsis">
     Bayesian
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../devops/">
+<a class="md-nav__link" href="../../../../category/devops/">
 <span class="md-ellipsis">
     DevOps
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../korea/">
+<a class="md-nav__link" href="../../../../category/korea/">
 <span class="md-ellipsis">
     Korea
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../film/">
+<a class="md-nav__link" href="../../../../category/film/">
 <span class="md-ellipsis">
     Film
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reading/">
+<a class="md-nav__link" href="../../../../category/reading/">
 <span class="md-ellipsis">
     Reading
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../travel/">
+<a class="md-nav__link" href="../../../../category/travel/">
 <span class="md-ellipsis">
     Travel
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/">
+<a class="md-nav__link" href="../../../../category/api/">
 <span class="md-ellipsis">
     API
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../typing/">
+<a class="md-nav__link" href="../../../../category/typing/">
 <span class="md-ellipsis">
     Typing
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../unix/">
+<a class="md-nav__link" href="../../../../category/unix/">
 <span class="md-ellipsis">
     UNIX
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../system/">
+<a class="md-nav__link" href="../../../../category/system/">
 <span class="md-ellipsis">
     System
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../machine-learning/">
+<a class="md-nav__link" href="../../../../category/machine-learning/">
 <span class="md-ellipsis">
     Machine Learning
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../nlp/">
+<a class="md-nav__link" href="../../../../category/nlp/">
 <span class="md-ellipsis">
     NLP
   </span>
@@ -311,14 +309,14 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../projects/">
+<a class="md-nav__link" href="../../../../../projects/">
 <span class="md-ellipsis">
     Projects
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../projects/posts/wondrous/">
+<a class="md-nav__link" href="../../../../../projects/posts/wondrous/">
 <span class="md-ellipsis">
     Wondrous.day
   </span>
@@ -336,37 +334,88 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#aws-chalice-lambda-as-a-backend">
+    AWS Chalice: Lambda as a Backend
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#aws-fargate">
+    AWS Fargate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#testing-out-the-results">
+    Testing out the results
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
-<div class="md-content" data-md-component="content">
-<div class="md-content__inner">
-<header class="md-typeset">
-<h1 id="terraform">Terraform</h1>
-</header>
-<article class="md-post md-post--excerpt">
-<header class="md-post__header">
-<div class="md-post__meta md-meta">
-<ul class="md-meta__list">
-<li class="md-meta__item">
-<time datetime="2023-08-27 00:00:00">Sunday, August 27, 2023</time></li>
-<li class="md-meta__item">
-            in
-            
-              <a class="md-meta__link" href="../python/">Python</a>, 
-              <a class="md-meta__link" href="../cloud/">Cloud</a>, 
-              <a class="md-meta__link" href="./">Terraform</a></li>
-<li class="md-meta__item">
-            
-              3 min read
-            
-          </li>
-</ul>
+<div class="md-content md-content--post" data-md-component="content">
+<div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner md-post">
+<nav class="md-nav">
+<div class="md-post__back">
+<div class="md-nav__title md-nav__container">
+<a class="md-nav__link" href="../../../../">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+<span class="md-ellipsis">
+                    Back to index
+                  </span>
+</a>
 </div>
-</header>
-<div class="md-post__content md-typeset">
-<h2 id="aws-lambda-project"><a class="toclink" href="../../2023/08/27/aws-lambda-project/">AWS Lambda Project</a></h2>
+</div>
+<ul class="md-post__meta md-nav__list">
+<li class="md-nav__item md-nav__title">
+<div class="md-nav__link">
+<span class="md-ellipsis">
+                    Metadata
+                  </span>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"></path></svg>
+<time class="md-ellipsis" datetime="2023-08-27 00:00:00">Sunday, August 27, 2023</time>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"></path></svg>
+<span class="md-ellipsis">
+                      in
+                      
+                        <a href="../../../../category/python/">Python</a>, 
+                        <a href="../../../../category/cloud/">Cloud</a>, 
+                        <a href="../../../../category/terraform/">Terraform</a></span>
+</div>
+</li>
+<li class="md-nav__item">
+<div class="md-nav__link">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"></path></svg>
+<span class="md-ellipsis">
+                      
+                        3 min read
+                      
+                    </span>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<article class="md-content__inner md-typeset">
+<h1 id="aws-lambda-project">AWS Lambda Project</h1>
 <p>As a follow up on my post about writing a bayesian model to predict score outcomes, this post will be about the steps to productionize the functionality. The final product is an endpoint that will give the percentage odds of a Win/Draw/Lose outcome for each match. The bayesian posteriors are updated every week and saved to S3, the actual endpoint is an AWS lambda that pulls the posteriors from AWS.</p>
 <p>The sequence diagram is as shown below. Let's run through the process of building up the Fargate and the Lambda services seperately.</p>
 <pre class="mermaid"><code>sequenceDiagram
@@ -385,14 +434,14 @@
   end
 </code></pre>
 <p>You can see the <a href="https://github.com/MatthewBurke1995/Chalice-application">github repo</a> to build the seperate Lambda and Fargate components. The S3 bucket and ECR instances are external dependencies that should be built outside of terraform. </p>
-<h3 id="aws-chalice-lambda-as-a-backend"><a class="toclink" href="../../2023/08/27/aws-lambda-project/#aws-chalice-lambda-as-a-backend">AWS Chalice: Lambda as a Backend</a></h3>
+<h2 id="aws-chalice-lambda-as-a-backend">AWS Chalice: Lambda as a Backend</h2>
 <p>AWS Lambda is a 'Function as a Service'. Each time a call is made to a lambda instance the program is initialized, run once and then closed. Languages with high startup or shutdown costs are not appropriate for a lambda infrastructure which makes Python a good choice, although AWS Lambda does offer Java runtimes. There is no state that can be shared between executions with Lambda, any state will have to be saved to an external service such as S3 or DynamoDB.</p>
 <p>When looking at what my options were for deploying python functions in Lambda I came across <a href="https://aws.github.io/chalice/index.html">'AWS Chalice'</a>, which is a library for writing endpoints or CRON jobs with a Flask like syntax. Chalice will handle the creation of the API Gateway, IAM roles and Cloudwatch events for scheduling.</p>
 <p>You can see the Lambda function I created with Chalice to make those game predictions in <a href="https://github.com/MatthewBurke1995/Chalice-application/blob/main/app/app.py#L32">github</a>. The business logic and configuration for deployment is very brief thanks to the Chalice abstractions. But the abstractions are not perfect. During the deployment phase there is a static analysis of which services are used and what permissions need to be provided to the Lambda role. Unfortunately it missed my usage of the s3, to help out the static analysis I added a branch of code that uses S3 from the index function. When that was added then everything was deployed as expected.</p>
-<h3 id="aws-fargate"><a class="toclink" href="../../2023/08/27/aws-lambda-project/#aws-fargate">AWS Fargate</a></h3>
+<h2 id="aws-fargate">AWS Fargate</h2>
 <p>The function to calculate the bayesian posteriors had a dependency with the 'numpyro' and 'jax' libraries which exceeded the 150mb runtime limit of Lambda. When AWS Lambda is not fit for purpose but you still require a serverless solution then AWS Fargate can run containers on demand. You can see the code I used to set up the <a href="https://github.com/MatthewBurke1995/Chalice-application/tree/main/calculation">Fargate weekly ETL on github</a>. The process for creating your ECR repository and adding the docker image is done outside of Terraform, and arguably should be kept outside of Terraform. The configuration includes running the task on a weekly schedule with the proper S3 writes.</p>
 <p>One of the issues I had when writing the terraform configuration was distinguishing between the execution role and the task role of the Fargate resource. Every Fargate instance should have a task_role_arn but Terraform can't pick this up at any point since the same "aws_ecs_task_definition" can be used with EC2 which wouldn't require the task_role_arn key. In brief the execution role should have enough permissions so start the Docker Container and the task role needs to have permissions to execute the code contained in the image e.g. "s3:PutObject" for writing to S3.</p>
-<h3 id="testing-out-the-results"><a class="toclink" href="../../2023/08/27/aws-lambda-project/#testing-out-the-results">Testing out the results</a></h3>
+<h2 id="testing-out-the-results">Testing out the results</h2>
 <p>Currently (2023 August) there are only 3 gameweeks to base the data off and posterior values are likely to be all over the place, but we can still make predictions based on what we have seen. Use the 3 letter name for each team e.g. MCI, LIV, ARS, TOT, CHE, MUN, NEW, AVL.</p>
 <p><input id="home" placeholder="MCI" type="text"/>
 <input id="away" placeholder="LIV" type="text"/>
@@ -419,59 +468,21 @@
 
   submitbutton.addEventListener('click', updateValue);
 </script>
-<nav class="md-post__action">
-<a href="../../2023/08/27/aws-lambda-project/">
-        Continue reading
-      </a>
-</nav>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2023</span>
+</small>
 </div>
 </article>
-<article class="md-post md-post--excerpt">
-<header class="md-post__header">
-<div class="md-post__meta md-meta">
-<ul class="md-meta__list">
-<li class="md-meta__item">
-<time datetime="2023-07-31 00:00:00">Monday, July 31, 2023</time></li>
-<li class="md-meta__item">
-            in
-            
-              <a class="md-meta__link" href="./">Terraform</a>, 
-              <a class="md-meta__link" href="../devops/">DevOps</a></li>
-<li class="md-meta__item">
-            
-              2 min read
-            
-          </li>
-</ul>
-</div>
-</header>
-<div class="md-post__content md-typeset">
-<h2 id="terraform"><a class="toclink" href="../../2023/07/31/terraform/">Terraform</a></h2>
-<p>My job title has never been 'DevOps' which is probably a good thing since having a dedicated DevOps team is arguably an antipattern. Throughout my career I've tended to work in smaller teams that are branched out from the core business, in which case I have had to deal with operations as I go.</p>
-<p>Terraform seems to have reached a Docker level of industry awareness, so i've been catching up on the trend. </p>
-<p>As a way of giving myself a target I came across a devops takehome test on reddit. You can see <a href="https://github.com/MatthewBurke1995/Dev-Ops-Take-Home">my solution on github</a>. As for the take home questions:</p>
-<p>Q: What is the rationale behind technology choices?
-A: Github CICD, Docker and Terraform tend to be the common tools for their respective functionality which makes them the easiest to troubleshoot and find related documentation for any problems that occur.</p>
-<p>Q: Any improvements you would make with more time?
-A: I'd modularize the terraform code so I could make 1 for 1 replication of dev and prod without copy pasting code. If it needed to be public facing I'd buy a domain name and set up dns using terraform (probably through Route53 or Cloudflare). And then I'd run health check tests against the IP address, if unsuccessful I'd roll things back.</p>
-<p>The app works, each push to master creates a docker image which would get deployed if I ran the <code>terraform apply</code> command but currently I'm only running <code>terraform plan</code> as the last step of the pipeline. </p>
-<p>Overall terraform is a much nicer experience than procedural coding using the AWS CLI or SDK.</p>
-<nav class="md-post__action">
-<a href="../../2023/07/31/terraform/">
-        Continue reading
-      </a>
-</nav>
-</div>
-</article>
-<nav class="md-pagination">
-</nav>
-</div>
 </div>
 </div>
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Cloud" class="md-footer__link md-footer__link--prev" href="../cloud/" rel="prev">
+<a aria-label="Previous: Bayesian Football Predictions" class="md-footer__link md-footer__link--prev" href="../../15/bayesian-football-predictions/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -480,21 +491,8 @@ A: I'd modularize the terraform code so I could make 1 for 1 replication of dev 
                 Previous
               </span>
 <div class="md-ellipsis">
-                Cloud
+                Bayesian Football Predictions
               </div>
-</div>
-</a>
-<a aria-label="Next: Math" class="md-footer__link md-footer__link--next" href="../math/" rel="next">
-<div class="md-footer__title">
-<span class="md-footer__direction">
-                Next
-              </span>
-<div class="md-ellipsis">
-                Math
-              </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
 </div>
 </a>
 </nav>
@@ -523,9 +521,9 @@ A: I'd modularize the terraform code so I could make 1 for 1 replication of dev 
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer"], "search": "../../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="../../../assets/javascripts/bundle.78eede0e.min.js"></script>
-<script src="../../../javascripts/mathjax.js"></script>
+<script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.footer"], "search": "../../../../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../../../../assets/javascripts/bundle.78eede0e.min.js"></script>
+<script src="../../../../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script type="module">import mermaid from "https://unpkg.com/mermaid@10.1.0/dist/mermaid.esm.min.mjs";
