@@ -11,6 +11,7 @@ plugins:
   - search # necessary for search to work
   - git-revision-date-localized
   - social
+  - mermaid2
   - blog:
       post_date_format: full
 
@@ -20,7 +21,6 @@ markdown_extensions:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
   - admonition
@@ -29,6 +29,12 @@ markdown_extensions:
   - md_in_html
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.superfences:
+        # make exceptions to highlighting of code:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
 
 extra_javascript:
   - javascripts/mathjax.js
