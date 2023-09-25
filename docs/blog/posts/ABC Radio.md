@@ -8,7 +8,7 @@ categories:
 
 # ABC Radio
 
-I wrote a [python library](https://abc-radio-wrapper.readthedocs.io/en/latest/index.html) for searching and parsing through the historical catalgoue of songs played on ABC (Australian Broadcasting Corporation) radio channels. This is especially timely since TripleJ will be releasing it's "Hottest 100" playlist for 2022 in a few days. 
+I wrote a [python library](https://abc-radio-wrapper.readthedocs.io/en/latest/index.html) for searching and parsing through the historical catalogue of songs played on ABC (Australian Broadcasting Corporation) radio channels. This is especially timely since TripleJ will be releasing it's "Hottest 100" playlist for 2022 in a few days. 
 
 <!-- more -->
 
@@ -74,7 +74,7 @@ Mura Masa                 382   382      382
 
 ```
 
-So what could you use this data for? From here if you were to pick a particular time interval you could imagine integrating with the youtube or spotify API to create a playlist for a certain day or month. I think a similar method is already used to compile the hottest 100 playlists on youtube after each January, at least I'd hope people weren't adding each item by hand. You could also challenge my assumption that TripleJ has a wide variety of music. One method would be to calculate the Gini Impurity of the song catalouge where each artist is it's own category. You'd need to compare the results with other radio stations or other periods of time. 
+So what could you use this data for? From here if you were to pick a particular time interval you could imagine integrating with the youtube or spotify API to create a playlist for a certain day or month. You could also challenge my assumption that TripleJ has a wide variety of music. One method would be to calculate the Gini Impurity of the song catalogue where each artist is it's own category. You'd need to compare the results with other radio stations or other periods of time. 
 
 And a convenience function for matching a song to a youtube video.
 

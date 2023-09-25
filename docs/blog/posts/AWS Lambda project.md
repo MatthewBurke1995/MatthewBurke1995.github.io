@@ -6,10 +6,12 @@ categories:
   - Terraform
 ---
 
-#AWS Lambda Project
+# Bayesian Football - AWS Lambda Project
 
 As a follow up on my post about writing a bayesian model to predict score outcomes, this post will be about the steps to productionize the functionality. The final product is an endpoint that will give the percentage odds of a Win/Draw/Lose outcome for each match. The bayesian posteriors are updated every week and saved to S3, the actual endpoint is an AWS lambda that pulls the posteriors from AWS.
 
+
+<!-- more -->
 
 The sequence diagram is as shown below. Let's run through the process of building up the Fargate and the Lambda services seperately.
 

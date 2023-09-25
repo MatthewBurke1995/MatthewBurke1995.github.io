@@ -392,6 +392,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../category/reading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../category/python/" class="md-nav__link">
         
   
@@ -537,26 +557,6 @@
   
   <span class="md-ellipsis">
     Film
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../category/reading/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Reading
   </span>
   
 
@@ -915,7 +915,7 @@
 
 
 <h1 id="abc-radio">ABC Radio</h1>
-<p>I wrote a <a href="https://abc-radio-wrapper.readthedocs.io/en/latest/index.html">python library</a> for searching and parsing through the historical catalgoue of songs played on ABC (Australian Broadcasting Corporation) radio channels. This is especially timely since TripleJ will be releasing it's "Hottest 100" playlist for 2022 in a few days. </p>
+<p>I wrote a <a href="https://abc-radio-wrapper.readthedocs.io/en/latest/index.html">python library</a> for searching and parsing through the historical catalogue of songs played on ABC (Australian Broadcasting Corporation) radio channels. This is especially timely since TripleJ will be releasing it's "Hottest 100" playlist for 2022 in a few days. </p>
 <!-- more -->
 
 <p>I'm particularly interested in the TripleJ data due to it aligning with my music preferences. TripleJ tends to have a good mix of quality and breadth in its music selection and is arguably the reason that the Australian music industry as a whole has punched above its weight for so long. Which is why I'll be looking at the TripleJ data in particular.</p>
@@ -972,7 +972,7 @@
 <a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">Lil</span> <span class="n">Nas</span> <span class="n">X</span>                 <span class="mi">389</span>   <span class="mi">389</span>      <span class="mi">389</span>
 <a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">Mura</span> <span class="n">Masa</span>                 <span class="mi">382</span>   <span class="mi">382</span>      <span class="mi">382</span>
 </code></pre></div>
-<p>So what could you use this data for? From here if you were to pick a particular time interval you could imagine integrating with the youtube or spotify API to create a playlist for a certain day or month. I think a similar method is already used to compile the hottest 100 playlists on youtube after each January, at least I'd hope people weren't adding each item by hand. You could also challenge my assumption that TripleJ has a wide variety of music. One method would be to calculate the Gini Impurity of the song catalouge where each artist is it's own category. You'd need to compare the results with other radio stations or other periods of time. </p>
+<p>So what could you use this data for? From here if you were to pick a particular time interval you could imagine integrating with the youtube or spotify API to create a playlist for a certain day or month. You could also challenge my assumption that TripleJ has a wide variety of music. One method would be to calculate the Gini Impurity of the song catalogue where each artist is it's own category. You'd need to compare the results with other radio stations or other periods of time. </p>
 <p>And a convenience function for matching a song to a youtube video.</p>
 <div class="highlight"><span class="filename">generate a youtube video from a song title</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">requests</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span> <span class="nn">urllib.parse</span>

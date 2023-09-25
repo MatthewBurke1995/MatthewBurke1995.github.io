@@ -6,16 +6,16 @@ categories:
 
 # The Friendship Paradox
 
-On average your friends will have more friends than you. On average the football team you support will be one of the mosty popular football teams in the world. And the train or bus you took to work today was close to full capacity.
+On average your friends will have more friends than you. On average the football team you support will be one of the most popular football teams in the world. And probably the train or bus you took to work today was close to full capacity.
 
-In graph theory there is a concept called "The Friendship Paradox" which stated plainly goes something like this "your friends have more friends than you". If we were to measure this, the recipe would look like:
+In graph theory there is a concept called "The Friendship Paradox" which stated plainly goes something like this "your friends have more friends than you". If we were to measure this phenomena, the recipe would look like:
 
 <!-- more -->
 
 ## Procedure
 
-1. Sample a random node (or ask a random person)
-2. Count the number of edges (i.e. 'degree') for that node (how many friends can you count)
+1. Sample a random node (ask a random person)
+2. Count the number of edges (i.e. 'degree') for that node ("how many friends do you have?")
 3. Calculate the degree for each neighbouring node (number of friends your friends have)
 4. Take the average of the neighbouring nodes degrees 
 5. Assert that the average degree of neighbouring nodes is higher than the degree of the randomly sampled node.
