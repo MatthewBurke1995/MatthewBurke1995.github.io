@@ -5,26 +5,27 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://matthewburke.xyz/blog/2023/08/27/aws-lambda-project/" rel="canonical"/>
+<link href="https://matthewburke.xyz/blog/2023/08/27/bayesian-football-aws-lambda-project/" rel="canonical"/>
 <link href="../../15/bayesian-football-predictions/" rel="prev"/>
+<link href="../../../09/25/moral-philosophy/" rel="next"/>
 <link href="../../../../../assets/book.png" rel="icon"/>
 <meta content="mkdocs-1.5.2, mkdocs-material-9.2.4" name="generator"/>
-<title>AWS Lambda Project - Matt's thoughts on things</title>
+<title>Bayesian Football - AWS Lambda Project - Matt's thoughts on things</title>
 <link href="../../../../../assets/stylesheets/main.0e669242.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <meta content="website" property="og:type"/>
-<meta content="AWS Lambda project - Matt's thoughts on things" property="og:title"/>
+<meta content="Bayesian Football - AWS Lambda Project - Matt's thoughts on things" property="og:title"/>
 <meta content="None" property="og:description"/>
 <meta content="https://matthewburke.xyz/assets/images/social/blog/posts/AWS Lambda project.png" property="og:image"/>
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
-<meta content="https://matthewburke.xyz/blog/2023/08/27/aws-lambda-project/" property="og:url"/>
+<meta content="https://matthewburke.xyz/blog/2023/08/27/bayesian-football-aws-lambda-project/" property="og:url"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="AWS Lambda project - Matt's thoughts on things" name="twitter:title"/>
+<meta content="Bayesian Football - AWS Lambda Project - Matt's thoughts on things" name="twitter:title"/>
 <meta content="None" name="twitter:description"/>
 <meta content="https://matthewburke.xyz/assets/images/social/blog/posts/AWS Lambda project.png" name="twitter:image"/>
 </head>
@@ -34,7 +35,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#aws-lambda-project">
+<a class="md-skip" href="#bayesian-football-aws-lambda-project">
           Skip to content
         </a>
 </div>
@@ -58,7 +59,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              AWS Lambda Project
+              Bayesian Football - AWS Lambda Project
             
           </span>
 </div>
@@ -177,6 +178,13 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../../../category/reading/">
+<span class="md-ellipsis">
+    Reading
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../../../category/python/">
 <span class="md-ellipsis">
     Python
@@ -229,13 +237,6 @@
 <a class="md-nav__link" href="../../../../category/film/">
 <span class="md-ellipsis">
     Film
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../../../category/reading/">
-<span class="md-ellipsis">
-    Reading
   </span>
 </a>
 </li>
@@ -415,8 +416,9 @@
 </div>
 </div>
 <article class="md-content__inner md-typeset">
-<h1 id="aws-lambda-project">AWS Lambda Project</h1>
+<h1 id="bayesian-football-aws-lambda-project">Bayesian Football - AWS Lambda Project</h1>
 <p>As a follow up on my post about writing a bayesian model to predict score outcomes, this post will be about the steps to productionize the functionality. The final product is an endpoint that will give the percentage odds of a Win/Draw/Lose outcome for each match. The bayesian posteriors are updated every week and saved to S3, the actual endpoint is an AWS lambda that pulls the posteriors from AWS.</p>
+<!-- more -->
 <p>The sequence diagram is as shown below. Let's run through the process of building up the Fargate and the Lambda services seperately.</p>
 <pre class="mermaid"><code>sequenceDiagram
   autonumber
@@ -473,7 +475,7 @@
 <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 25, 2023</span>
 </small>
 </div>
 </article>
@@ -493,6 +495,19 @@
 <div class="md-ellipsis">
                 Bayesian Football Predictions
               </div>
+</div>
+</a>
+<a aria-label="Next: Moral Philosophy" class="md-footer__link md-footer__link--next" href="../../../09/25/moral-philosophy/" rel="next">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Next
+              </span>
+<div class="md-ellipsis">
+                Moral Philosophy
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
 </div>
 </a>
 </nav>
